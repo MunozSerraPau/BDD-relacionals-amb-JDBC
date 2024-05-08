@@ -1,7 +1,6 @@
 package Controlador;
 
 import Model.*;
-
 import java.sql.Connection;
 import java.util.Scanner;
 
@@ -17,11 +16,40 @@ public class Controlador {
             switch (opcioMneu) {
 
                 case "1":
-                    System.out.println("Exercici 1 ():");
+                    System.out.println("Exercici 1:");
+                    Model.exercici1(connexio);
                     break;
 
                 case "2":
-                    System.out.println("Exercici 2 ():");
+                    System.out.println("Exercici 2:");
+                    break;
+                    
+                case "3":
+                    System.out.println("Exercici 3:");
+                    break;
+
+                case "4":
+                    System.out.println("Exercici 4:");
+                    break;
+                    
+                case "5":
+                    System.out.println("Exercici 5:");
+                    break;
+
+                case "6":
+                    System.out.println("Exercici 6:");
+                    break;
+                    
+                case "7":
+                    System.out.println("Exercici 7:");
+                    break;
+
+                case "8":
+                    System.out.println("Exercici 8:");
+                    break;
+
+                case "9":
+                    System.out.println("Exercici 9:");
                     break;
 
                 case "0":

@@ -1,11 +1,8 @@
 package Model;
 
-import javax.xml.stream.events.StartDocument;
 import java.sql.*;
-import java.util.Scanner;
 
-public class Model {
-    public static Scanner scan = new Scanner(System.in);
+public class Connexio {
     public static Connection conectarBD(String url, String user, String contra) {
         Connection connexio = null;
 
@@ -30,9 +27,9 @@ public class Model {
 
 
     public static void exercici1(Connection con) {
-        String sentenciaSQL, nomEquip;
+        String sentenciaSQL, nomEquip = "G";
         System.out.print("Escriu el nom d'un equip: ");
-        nomEquip = scan.nextLine();
+        //nomEquip = scan.nextLine();
         sentenciaSQL = "SELECT nom FROM jugadors WHERE equip_id = (SELECT id FROM equips WHERE nom = '"+ nomEquip +"' )";
 
 

@@ -10,7 +10,7 @@ public class Controlador {
     public static Scanner scan = new Scanner(System.in);
     public static void Exercicis() {
         String opcioMneu;
-        Connection connexio = Model.conectarBD("jdbc:mysql://10.94.255.110:3306/NBA", "perepi", "pastanaga");
+        Connection connexio = Connexio.conectarBD("jdbc:mysql://10.94.255.110:3306/NBA", "perepi", "pastanaga");
 
         do {
             Vista.mostrarMenuOpcions();
@@ -19,7 +19,7 @@ public class Controlador {
 
                 case "1":
                     System.out.println("Exercici 1:");
-                    Model.exercici1(connexio);
+                    Connexio.exercici1(connexio);
                     break;
 
                 case "2":
@@ -55,7 +55,7 @@ public class Controlador {
                     break;
 
                 case "0":
-                    Model.desconectarBD(connexio);
+                    Connexio.desconectarBD(connexio);
                     break;
 
                 default:

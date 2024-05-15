@@ -4,14 +4,13 @@ import java.util.List;
 
 public class JugadoresDAO implements DAO<Jugadres> {
 
-
     @Override
     public boolean create(Jugadres jugadres) {
         return false;
     }
 
     @Override
-    public boolean read(Jugadres jugadres) {
+    public boolean read(int id_jugador) {
         return false;
     }
 
@@ -39,4 +38,9 @@ public class JugadoresDAO implements DAO<Jugadres> {
     public List<Jugadres> all() {
         return null;
     }
+
+    public void exercici1 () {
+
+    }
+
 }

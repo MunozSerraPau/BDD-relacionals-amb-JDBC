@@ -5,10 +5,10 @@ import java.util.*;
 public interface DAO<T> {
 
     // CRUD
-    boolean create(T t);
-    boolean read(T t);
-    boolean update(T t);
-    boolean delete(T t);
+    boolean create(T obj);
+    boolean read(int id);
+    boolean update(T obj);
+    boolean delete(T obj);
 
     // ALTRES
     boolean exists(T t);

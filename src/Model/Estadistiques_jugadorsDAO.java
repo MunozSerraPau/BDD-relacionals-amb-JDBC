@@ -9,7 +9,7 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
     }
 
     @Override
-    public boolean read(Estadistiques_jugadors estadistiquesJugadors) {
+    public boolean read(int id_estadistiques) {
         return false;
     }
 

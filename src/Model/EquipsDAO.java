@@ -38,7 +38,7 @@ public class EquipsDAO implements DAO<Equips> {
     }
 
     @Override
-    public boolean read(Equips equips) {
+    public boolean read(int id_equip) {
         return false;
     }
 }

@@ -26,6 +26,9 @@ public class Model {
             System.out.println(e.getMessage());
         }
     }
+
+
+
     public static void exercici1(Connection con) {
         String sentenciaSQL, nomEquip;
         System.out.print("Escriu el nom d'un equip: ");

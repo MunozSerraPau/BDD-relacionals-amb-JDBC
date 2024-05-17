@@ -1,5 +1,10 @@
 package Vista;
 
+import Model.Jugadres;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Vista {
     public static void mostrarMenuOpcions() {
         System.out.println("MENÚ DE EXERCICIS");
@@ -16,5 +21,11 @@ public class Vista {
         System.out.println("O - Sortir del programa");
         System.out.println("---------------------------------");
         System.out.print("Quina opció vols (escriu només el numero)? ");
+    }
+    public static void mostrarJugadors(List<Jugadres> llistaJugadors) {
+        for (Jugadres j : llistaJugadors) {
+            System.out.println(j);
+        }
+
     }
 }

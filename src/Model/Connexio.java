@@ -3,15 +3,18 @@ package Model;
 import java.sql.*;
 
 public class Connexio {
-    public static Connection conectarBD(String url, String user, String contra) {
+    public static Connection conectarBD() {
+        String url = "jdbc:mysql://192.168.14.8:3306/NBA";
+        String user = "perepi";
+        String contra = "pastanaga";
+
         Connection connexio = null;
 
         try {
             connexio = DriverManager.getConnection(url, user, contra);
-
-            System.out.println("Connexió establerta");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("No s'ha pogut connectar a la Base de Dades.");
+
         }
 
         return connexio;

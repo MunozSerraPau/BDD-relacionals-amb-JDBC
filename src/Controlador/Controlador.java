@@ -10,7 +10,7 @@ public class Controlador {
     public static Scanner scan = new Scanner(System.in);
     public static void Exercicis() {
         String opcioMneu;
-        Connection connexio = Connexio.conectarBD("jdbc:mysql://10.94.255.110:3306/NBA", "perepi", "pastanaga");
+        Connection connexio = Connexio.conectarBD();
 
         do {
             Vista.mostrarMenuOpcions();
@@ -19,7 +19,12 @@ public class Controlador {
 
                 case "1":
                     System.out.println("Exercici 1:");
-                    Connexio.exercici1(connexio);
+                    try {
+                        JugadoresDAO.exercici1();
+                    } catch (Exception e) {
+                        System.out.println("ERROR!");
+                    }
+
                     break;
 
                 case "2":

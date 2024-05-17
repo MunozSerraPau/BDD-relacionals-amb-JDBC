@@ -3,79 +3,62 @@ package Model;
 public class Jugadres {
     // VARIABLES
     private int jugadorId;
+    private String nom;
+    private String cognom;
+    private String dataNaixement;
+    private float alcada;
+    private float pes;
+    private String dorsal;
+    private String posicio;
     private int equipId;
-    private int partitId;
-    private double minutsJugats;
-    private int punts;
-    private int tirsAnotats;
-    private int tirsTirats;
-    private int tirsTriplesAnotats;
-    private int tirsTriplesTirats;
-    private int tirsLliuresAnotats;
-    private int tirsLliuresTirats;
-    private int rebotsOfensius;
-    private int rebotsDefensius;
-    private int assistencies;
-    private int robades;
-    private int bloqueigs;
 
 
-    // CONSTRUCTOR
-    public Jugadres (int jugadorId, int equipId, int partitId, double minutsJugats, int punts, int tirsAnotats, int tirsTirats, int tirsTriplesAnotats, int tirsTriplesTirats, int tirsLliuresAnotats, int tirsLliuresTirats, int rebotsOfensius, int rebotsDefensius, int assistencies, int robades, int bloqueigs) {
+    // CONSTRUCTOR 1
+    public Jugadres(int jugadorId, String nom, String cognom, String dataNaixement, float alcada, float pes, String dorsal, String posicio, int equipId) {
         this.jugadorId = jugadorId;
+        this.nom = nom;
+        this.cognom = cognom;
+        this.dataNaixement = dataNaixement;
+        this.alcada = alcada;
+        this.pes = pes;
+        this.dorsal = dorsal;
+        this.posicio = posicio;
         this.equipId = equipId;
-        this.partitId = partitId;
-        this.minutsJugats = minutsJugats;
-        this.punts = punts;
-        this.tirsAnotats = tirsAnotats;
-        this.tirsTirats = tirsTirats;
-        this.tirsTriplesAnotats = tirsTriplesAnotats;
-        this.tirsTriplesTirats = tirsTriplesTirats;
-        this.tirsLliuresAnotats = tirsLliuresAnotats;
-        this.tirsLliuresTirats = tirsLliuresTirats;
-        this.rebotsOfensius = rebotsOfensius;
-        this.rebotsDefensius = rebotsDefensius;
-        this.assistencies = assistencies;
-        this.robades = robades;
-        this.bloqueigs = bloqueigs;
     }
 
+    // CONSTRUCTOR 2
+    public Jugadres(int jugadorId, String nom, int equipId) {
+        this.jugadorId = jugadorId;
+        this.nom = nom;
+        this.equipId = equipId;
+    }
+
+    // CONSTRUCTOR 1
+    public Jugadres(String nom) {
+        this.nom = nom;
+    }
 
     // GETTERS
     public int getJugadorId() { return jugadorId; }
+    public String getNom() { return nom; }
+    public String getCognom() { return cognom; }
+    public String getDataNaixement() { return dataNaixement; }
+    public float getAlcada() { return alcada; }
+    public float getPes() { return pes; }
+    public String getDorsal() { return dorsal; }
+    public String getPosicio() { return posicio; }
     public int getEquipId() { return equipId; }
-    public int getPartitId() { return partitId; }
-    public double getMinutsJugats() { return minutsJugats; }
-    public int getPunts() { return punts; }
-    public int getTirsAnotats() { return tirsAnotats; }
-    public int getTirsTirats() { return tirsTirats; }
-    public int getTirsTriplesAnotats() { return tirsTriplesAnotats; }
-    public int getTirsTriplesTirats() { return tirsTriplesTirats; }
-    public int getTirsLliuresAnotats() { return tirsLliuresAnotats; }
-    public int getTirsLliuresTirats() { return tirsLliuresTirats; }
-    public int getRebotsOfensius() { return rebotsOfensius; }
-    public int getRebotsDefensius() { return rebotsDefensius; }
-    public int getAssistencies() { return assistencies; }
-    public int getRobades() { return robades; }
-    public int getBloqueigs() { return bloqueigs; }
 
 
-    // SETTERS
+    // SETTER
     public void setJugadorId(int jugadorId) { this.jugadorId = jugadorId; }
+    public void setNom(String nom) { this.nom = nom; }
+    public void setCognom(String cognom) { this.cognom = cognom; }
+    public void setDataNaixement(String dataNaixement) { this.dataNaixement = dataNaixement; }
+    public void setAlcada(float alcada) { this.alcada = alcada; }
+    public void setPes(float pes) { this.pes = pes; }
+    public void setDorsal(String dorsal) { this.dorsal = dorsal; }
+    public void setPosicio(String posicio) { this.posicio = posicio; }
     public void setEquipId(int equipId) { this.equipId = equipId; }
-    public void setPartitId(int partitId) { this.partitId = partitId; }
-    public void setMinutsJugats(double minutsJugats) { this.minutsJugats = minutsJugats; }
-    public void setPunts(int punts) { this.punts = punts; }
-    public void setTirsAnotats(int tirsAnotats) { this.tirsAnotats = tirsAnotats; }
-    public void setTirsTirats(int tirsTirats) { this.tirsTirats = tirsTirats; }
-    public void setTirsTriplesAnotats(int tirsTriplesAnotats) { this.tirsTriplesAnotats = tirsTriplesAnotats; }
-    public void setTirsTriplesTirats(int tirsTriplesTirats) { this.tirsTriplesTirats = tirsTriplesTirats; }
-    public void setTirsLliuresAnotats(int tirsLliuresAnotats) { this.tirsLliuresAnotats = tirsLliuresAnotats; }
-    public void setTirsLliuresTirats(int tirsLliuresTirats) { this.tirsLliuresTirats = tirsLliuresTirats; }
-    public void setRebotsOfensius(int rebotsOfensius) { this.rebotsOfensius = rebotsOfensius; }
-    public void setRebotsDefensius(int rebotsDefensius) { this.rebotsDefensius = rebotsDefensius; }
-    public void setAssistencies(int assistencies) { this.assistencies = assistencies; }
-    public void setRobades(int robades) { this.robades = robades; }
-    public void setBloqueigs(int bloqueigs) { this.bloqueigs = bloqueigs; }
-
 }
+

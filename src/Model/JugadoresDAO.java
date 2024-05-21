@@ -15,11 +15,7 @@ public class JugadoresDAO implements DAO<Jugadres> {
 
     @Override
     public boolean create(Jugadres jugadres) {
-        Connection connection = Connexio.conectarBD();
 
-        PreparedStatement statement = connection.prepareStatement("SELECT nom, cognom FROM jugadors WHERE equip_id = ?");
-        statement.setLong(1, idEquip);
-        ResultSet resultSet = statement.executeQuery();
         return false;
     }
 

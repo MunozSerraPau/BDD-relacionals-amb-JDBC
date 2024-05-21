@@ -34,8 +34,9 @@ public class Jugadres {
     }
 
     // CONSTRUCTOR 1
-    public Jugadres(String nom) {
+    public Jugadres(String nom, String cognom) {
         this.nom = nom;
+        this.cognom = cognom;
     }
 
     // GETTERS

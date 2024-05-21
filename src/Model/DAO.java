@@ -13,5 +13,5 @@ public interface DAO<T> {
     // ALTRES
     boolean exists(T t);
     int count();
-    List<T> all();
+    List<T> all() throws Exception;
 }

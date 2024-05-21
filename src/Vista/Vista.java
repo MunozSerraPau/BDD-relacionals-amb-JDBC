@@ -1,5 +1,7 @@
 package Vista;
 
+import Model.Estadistiques_jugadors;
+import Model.Estadistiques_jugadorsDAO;
 import Model.Jugadres;
 
 import java.util.ArrayList;
@@ -24,8 +26,20 @@ public class Vista {
     }
     public static void mostrarJugadors(List<Jugadres> llistaJugadors) {
         for (Jugadres j : llistaJugadors) {
-            System.out.println(j);
+            System.out.println("Jugador: " + j.getNom() + " " + j.getCognom());
         }
-
+        llistaJugadors.clear();
     }
+    public static void mostrarEstadisticas(List<Estadistiques_jugadors> llistaEstadistiques) {
+        for (Estadistiques_jugadors e : llistaEstadistiques) {
+            System.out.println("Estadístiques / Partit: \n" +
+                    "\tPunts: " + e.getPunts() + "\n" +
+                    "\tAssistencies: " + e.getAssistencies() + "\n" +
+                    "\tRobades: " + e.getRobades() + "\n" +
+                    "\tBloqueigs: " + e.getBloqueigs());
+        }
+        llistaEstadistiques.clear();
+    }
+
+
 }

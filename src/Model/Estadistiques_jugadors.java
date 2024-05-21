@@ -7,7 +7,7 @@ public class Estadistiques_jugadors {
     private int equipId;
     private int partitId;
     private double minutsJugats;
-    private int punts;
+    private float punts;
     private int tirsAnotats;
     private int tirsTirats;
     private int tirsTriplesAnotats;
@@ -16,9 +16,9 @@ public class Estadistiques_jugadors {
     private int tirsLliuresTirats;
     private int rebotsOfensius;
     private int rebotsDefensius;
-    private int assistencies;
-    private int robades;
-    private int bloqueigs;
+    private float assistencies;
+    private float robades;
+    private float bloqueigs;
 
 
     // CONSTRUCTOR
@@ -41,13 +41,19 @@ public class Estadistiques_jugadors {
         this.bloqueigs = bloqueigs;
     }
 
+    public Estadistiques_jugadors(float punts, float assistencies, float robades, float bloqueigs) {
+        this.punts = punts;
+        this.assistencies = assistencies;
+        this.robades = robades;
+        this.bloqueigs = bloqueigs;
+    }
 
     // GETTERS
     public int getJugadorId() { return jugadorId; }
     public int getEquipId() { return equipId; }
     public int getPartitId() { return partitId; }
     public double getMinutsJugats() { return minutsJugats; }
-    public int getPunts() { return punts; }
+    public float getPunts() { return punts; }
     public int getTirsAnotats() { return tirsAnotats; }
     public int getTirsTirats() { return tirsTirats; }
     public int getTirsTriplesAnotats() { return tirsTriplesAnotats; }
@@ -56,9 +62,9 @@ public class Estadistiques_jugadors {
     public int getTirsLliuresTirats() { return tirsLliuresTirats; }
     public int getRebotsOfensius() { return rebotsOfensius; }
     public int getRebotsDefensius() { return rebotsDefensius; }
-    public int getAssistencies() { return assistencies; }
-    public int getRobades() { return robades; }
-    public int getBloqueigs() { return bloqueigs; }
+    public float getAssistencies() { return assistencies; }
+    public float getRobades() { return robades; }
+    public float getBloqueigs() { return bloqueigs; }
 
 
     // SETTERS
@@ -66,7 +72,7 @@ public class Estadistiques_jugadors {
     public void setEquipId(int equipId) { this.equipId = equipId; }
     public void setPartitId(int partitId) { this.partitId = partitId; }
     public void setMinutsJugats(double minutsJugats) { this.minutsJugats = minutsJugats; }
-    public void setPunts(int punts) { this.punts = punts; }
+    public void setPunts(float punts) { this.punts = punts; }
     public void setTirsAnotats(int tirsAnotats) { this.tirsAnotats = tirsAnotats; }
     public void setTirsTirats(int tirsTirats) { this.tirsTirats = tirsTirats; }
     public void setTirsTriplesAnotats(int tirsTriplesAnotats) { this.tirsTriplesAnotats = tirsTriplesAnotats; }
@@ -75,7 +81,7 @@ public class Estadistiques_jugadors {
     public void setTirsLliuresTirats(int tirsLliuresTirats) { this.tirsLliuresTirats = tirsLliuresTirats; }
     public void setRebotsOfensius(int rebotsOfensius) { this.rebotsOfensius = rebotsOfensius; }
     public void setRebotsDefensius(int rebotsDefensius) { this.rebotsDefensius = rebotsDefensius; }
-    public void setAssistencies(int assistencies) { this.assistencies = assistencies; }
-    public void setRobades(int robades) { this.robades = robades; }
-    public void setBloqueigs(int bloqueigs) { this.bloqueigs = bloqueigs; }
+    public void setAssistencies(float assistencies) { this.assistencies = assistencies; }
+    public void setRobades(float robades) { this.robades = robades; }
+    public void setBloqueigs(float bloqueigs) { this.bloqueigs = bloqueigs; }
 }

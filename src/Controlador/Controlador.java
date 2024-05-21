@@ -4,13 +4,14 @@ import Model.*;
 import Vista.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Controlador {
     public static Scanner scan = new Scanner(System.in);
     public static void Exercicis() {
         String opcioMneu;
-        Connection connexio = Connexio.conectarBD();
 
         do {
             Vista.mostrarMenuOpcions();
@@ -18,21 +19,44 @@ public class Controlador {
             switch (opcioMneu) {
 
                 case "1":
+                    List<Jugadres> players;
+                    JugadoresDAO llistaPlayer = new JugadoresDAO();
+
                     System.out.println("Exercici 1:");
                     try {
-                        JugadoresDAO.exercici1();
+                        players = llistaPlayer.all();
+                        Vista.mostrarJugadors(players);
                     } catch (Exception e) {
-                        System.out.println("ERROR!");
+                        System.out.println("ERRO!! " + e.getMessage());
                     }
-
                     break;
 
+
                 case "2":
+                    List<Estadistiques_jugadors> estadicticaJugador;
+                    Estadistiques_jugadorsDAO estadJug = new Estadistiques_jugadorsDAO();
+
                     System.out.println("Exercici 2:");
+                    try {
+                        estadicticaJugador = estadJug.all();
+                        Vista.mostrarEstadisticas(estadicticaJugador);
+                    } catch (Exception e) {
+                        System.out.println("ERRO!! " + e.getMessage());
+                    }
                     break;
                     
                 case "3":
+                    //List<Estadistiques_jugadors> estadicticaJugador;
+                    //Estadistiques_jugadorsDAO estadJug = new Estadistiques_jugadorsDAO();
+
                     System.out.println("Exercici 3:");
+                    //try {
+                    //    estadicticaJugador = estadJug.all();
+                    //    Vista.mostrarEstadisticas(estadicticaJugador);
+                    //} catch (Exception e) {
+                    //    System.out.println("ERRO!! " + e.getMessage());
+                    //}
+
                     break;
 
                 case "4":
@@ -60,7 +84,8 @@ public class Controlador {
                     break;
 
                 case "0":
-                    Connexio.desconectarBD(connexio);
+                    Connexio.desconectarBD(Connexio.conectarBD());
+                    System.out.println("S'ha desconnectar de la Base de Dades.");
                     break;
 
                 default:

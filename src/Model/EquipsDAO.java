@@ -47,8 +47,8 @@ public class EquipsDAO implements DAO<Equips> {
         return false;
     }
 
-    public static int trovarEquipId (String n) {
-        int equipId = 0;
+    public static Long trovarEquipId (String n) {
+        Long equipId = null;
 
         try {
             Connection connection = Connexio.conectarBD();
@@ -61,7 +61,7 @@ public class EquipsDAO implements DAO<Equips> {
             ResultSet resultatId = statement.executeQuery();
 
             if(resultatId.next()) {
-                equipId = resultatId.getInt("equip_id");
+                equipId = resultatId.getLong("equip_id");
             } else {
                 System.out.println("No s'ha trobat cap equip amb aquest nom!");
             }

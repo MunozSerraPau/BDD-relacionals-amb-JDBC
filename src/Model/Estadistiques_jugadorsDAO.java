@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
+
     public static Scanner scan = new Scanner(System.in);
     @Override
     public boolean create(Estadistiques_jugadors estadistiquesJugadors) {
@@ -15,8 +16,8 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
     }
 
     @Override
-    public boolean read(int id_estadistiques) {
-        return false;
+    public Estadistiques_jugadors read(int id_estadistiques) {
+        return null;
     }
 
     @Override
@@ -30,7 +31,7 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
     }
 
     @Override
-    public boolean exists(Estadistiques_jugadors estadistiquesJugadors) {
+    public boolean exists(int id) {
         return false;
     }
 
@@ -44,10 +45,11 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
         String nomJug;
         Long idJugador;
         List<Estadistiques_jugadors> estadisticaJugador = new ArrayList<>();
+        JugadoresDAO j = new JugadoresDAO();
 
         System.out.print("Escriu el nom del jugador:(LeBron James) ");
         nomJug = scan.nextLine().trim();
-        idJugador = JugadoresDAO.trovarJugadorId(nomJug);
+        idJugador = j.trovarJugadorId(nomJug);
 
         Connection connection = Connexio.conectarBD();
 

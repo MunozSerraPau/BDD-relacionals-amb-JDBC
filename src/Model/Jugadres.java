@@ -10,12 +10,12 @@ public class Jugadres {
     private float pes;
     private String dorsal;
     private String posicio;
-    private int equipId;
+    private long equipId;
 
 
     // CONSTRUCTOR 1
-    public Jugadres(int jugadorId, String nom, String cognom, String dataNaixement, float alcada, float pes, String dorsal, String posicio, int equipId) {
-        this.jugadorId = jugadorId;
+    public Jugadres(String nom, String cognom, String dataNaixement, float alcada, float pes, String dorsal, String posicio, long equipId) {
+        this.jugadorId = 0;
         this.nom = nom;
         this.cognom = cognom;
         this.dataNaixement = dataNaixement;
@@ -48,7 +48,7 @@ public class Jugadres {
     public float getPes() { return pes; }
     public String getDorsal() { return dorsal; }
     public String getPosicio() { return posicio; }
-    public int getEquipId() { return equipId; }
+    public long getEquipId() { return equipId; }
 
 
     // SETTER
@@ -60,6 +60,6 @@ public class Jugadres {
     public void setPes(float pes) { this.pes = pes; }
     public void setDorsal(String dorsal) { this.dorsal = dorsal; }
     public void setPosicio(String posicio) { this.posicio = posicio; }
-    public void setEquipId(int equipId) { this.equipId = equipId; }
+    public void setEquipId(long equipId) { this.equipId = equipId; }
 }
 

@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Controlador {
+    public static EquipsDAO equipDAO = new EquipsDAO();
+    public static JugadoresDAO jugadorDAO = new JugadoresDAO();
+
+    public static Estadistiques_jugadorsDAO EstadisticaJugador = new Estadistiques_jugadorsDAO();
+
+
     public static Scanner scan = new Scanner(System.in);
     public static void Exercicis() {
         String opcioMneu;
@@ -20,11 +26,10 @@ public class Controlador {
 
                 case "1":
                     List<Jugadres> players;
-                    JugadoresDAO llistaPlayer = new JugadoresDAO();
 
                     System.out.println("Exercici 1:");
                     try {
-                        players = llistaPlayer.all();
+                        players = jugadorDAO.all();
                         Vista.mostrarJugadors(players);
                     } catch (Exception e) {
                         System.out.println("ERRO!! " + e.getMessage());
@@ -34,11 +39,10 @@ public class Controlador {
 
                 case "2":
                     List<Estadistiques_jugadors> estadicticaJugador;
-                    Estadistiques_jugadorsDAO estadJug = new Estadistiques_jugadorsDAO();
 
                     System.out.println("Exercici 2:");
                     try {
-                        estadicticaJugador = estadJug.all();
+                        estadicticaJugador = EstadisticaJugador.all();
                         Vista.mostrarEstadisticas(estadicticaJugador);
                     } catch (Exception e) {
                         System.out.println("ERRO!! " + e.getMessage());
@@ -60,7 +64,21 @@ public class Controlador {
                     break;
 
                 case "4":
+                    Jugadres jugador;
                     System.out.println("Exercici 4:");
+
+                    try {
+                        jugador = jugadorDAO.exercici4();
+
+                        if (jugador == null) {
+
+                        } else {
+
+                        }
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+
                     break;
                     
                 case "5":

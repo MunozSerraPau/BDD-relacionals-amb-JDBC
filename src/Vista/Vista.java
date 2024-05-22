@@ -41,5 +41,10 @@ public class Vista {
         llistaEstadistiques.clear();
     }
 
+    public static void missatgeJugadorTrovat() {
+        System.out.println("Hi ha un jugadorJa existeix aquest jugador!");
+        System.out.println("Vols que canvi al equip que has introduït? (S = Si | N = No)");
+    }
+
 
 }

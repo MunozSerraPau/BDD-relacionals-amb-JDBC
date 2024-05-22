@@ -10,8 +10,8 @@ public class PartitsDAO implements DAO<Partits> {
     }
 
     @Override
-    public boolean read(int id) {
-        return false;
+    public Partits read(int id) {
+        return null;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class PartitsDAO implements DAO<Partits> {
     }
 
     @Override
-    public boolean exists(Partits partits) {
+    public boolean exists(int id) {
         return false;
     }
 

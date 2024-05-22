@@ -27,7 +27,7 @@ public class EquipsDAO implements DAO<Equips> {
     }
 
     @Override
-    public boolean exists(Equips equips) {
+    public boolean exists(int id) {
         return false;
     }
 
@@ -42,12 +42,12 @@ public class EquipsDAO implements DAO<Equips> {
     }
 
     @Override
-    public boolean read(int id_equip) {
+    public Equips read(int id_equip) {
 
-        return false;
+        return null;
     }
 
-    public static Long trovarEquipId (String n) {
+    public Long trovarEquipId (String n) {
         Long equipId = null;
 
         try {

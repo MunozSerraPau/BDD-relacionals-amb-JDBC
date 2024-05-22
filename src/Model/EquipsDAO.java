@@ -42,7 +42,7 @@ public class EquipsDAO implements DAO<Equips> {
     }
 
     @Override
-    public Equips read(int id_equip) {
+    public Equips read(Long id_equip) {
 
         return null;
     }

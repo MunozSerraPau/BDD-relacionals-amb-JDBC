@@ -1,13 +1,14 @@
 package Model;
 
+import java.sql.SQLException;
 import java.util.*;
 
 public interface DAO<T> {
 
     // CRUD
     boolean create(T obj) throws Exception;
-    T read(int id);
-    boolean update(T obj);
+    T read(Long id) throws Exception;
+    boolean update(T obj) throws Exception;
     boolean delete(T obj);
 
     // ALTRES

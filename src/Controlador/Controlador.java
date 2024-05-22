@@ -69,12 +69,7 @@ public class Controlador {
 
                     try {
                         jugador = jugadorDAO.exercici4();
-
-                        if (jugador == null) {
-
-                        } else {
-
-                        }
+                        Vista.mostrarJugador(jugador);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

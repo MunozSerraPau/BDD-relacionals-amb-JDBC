@@ -40,10 +40,20 @@ public class Vista {
         }
         llistaEstadistiques.clear();
     }
-
-    public static void missatgeJugadorTrovat() {
-        System.out.println("Hi ha un jugadorJa existeix aquest jugador!");
+    public static void missatgeJugadorTrobat() {
+        System.out.println("Hi ha un jugador amb aquest nom, ja existeix aquest jugador!");
         System.out.println("Vols que canvi al equip que has introduït? (S = Si | N = No)");
+    }
+    public static void missatgeJugadorNoTrobat() {
+        System.out.println("No s'ha trobat cap jugador amb aquest nom!");
+        System.out.println("Ara crearem el jugador, amb el nom que has introduït i al equip que has seleccionat.");
+    }
+    public static void mostrarJugador(Jugadres jugadr) {
+        System.out.println("Nom: " + jugadr.getNom() + " " + jugadr.getCognom() +
+                "\nAlçada: " + jugadr.getAlcada() +
+                "\nPes: " + jugadr.getPes() +
+                "\nDorsal: " + jugadr.getDorsal() +
+                "\nPosició: " + jugadr.getPosicio());
     }
 
 

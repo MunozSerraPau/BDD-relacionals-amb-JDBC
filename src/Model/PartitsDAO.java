@@ -10,7 +10,7 @@ public class PartitsDAO implements DAO<Partits> {
     }
 
     @Override
-    public Partits read(int id) {
+    public Partits read(Long id) {
         return null;
     }
 

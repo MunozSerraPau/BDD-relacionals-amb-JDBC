@@ -16,7 +16,7 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
     }
 
     @Override
-    public Estadistiques_jugadors read(int id_estadistiques) {
+    public Estadistiques_jugadors read(Long id_estadistiques) {
         return null;
     }
 

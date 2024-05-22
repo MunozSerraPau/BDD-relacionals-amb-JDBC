@@ -27,9 +27,15 @@ public class Jugadres {
     }
 
     // CONSTRUCTOR 2
-    public Jugadres(int jugadorId, String nom, int equipId) {
+    public Jugadres(int jugadorId, String nom, String cognom, String dataNaixement, float alcada, float pes, String dorsal, String posicio, long equipId) {
         this.jugadorId = jugadorId;
         this.nom = nom;
+        this.cognom = cognom;
+        this.dataNaixement = dataNaixement;
+        this.alcada = alcada;
+        this.pes = pes;
+        this.dorsal = dorsal;
+        this.posicio = posicio;
         this.equipId = equipId;
     }
 

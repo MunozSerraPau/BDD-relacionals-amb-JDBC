@@ -3,6 +3,7 @@ package Model;
 import Vista.Vista;
 
 import java.sql.*;
+import java.time.temporal.JulianFields;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,6 +17,55 @@ public class JugadoresDAO implements DAO<Jugadres> {
 
         PreparedStatement statement = connection.prepareStatement("INSERT INTO `jugadors` (`nom`, `cognom`, `data_naixement`, `alcada`, `pes`, `dorsal`, `posicio`, `equip_id`) VALUES " +
                 "(?, ?, ?, ?, ?, ?, ?, ?),");
+        statement.setString(1, jugadres.getNom());
+        statement.setString(2, jugadres.getCognom());
+        statement.setString(3, jugadres.getDataNaixement());
+        statement.setFloat(4, jugadres.getAlcada());
+        statement.setFloat(5, jugadres.getPes());
+        statement.setString(6, jugadres.getDorsal());
+        statement.setString(7, jugadres.getPosicio());
+        statement.setLong(8, jugadres.getEquipId());
+        ResultSet resultSet = statement.executeQuery();
+
+        return true;
+    }
+
+    @Override
+    public Jugadres read(Long id_jugador) throws SQLException {
+        Jugadres j = new Jugadres(0, "", "", "", 0f, 0f, "", "", 0);
+
+        Connection connection = Connexio.conectarBD();
+
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM jugadors WHERE jugador_id = ?");
+        statement.setLong(2, id_jugador);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            j.setJugadorId(resultSet.getInt("jugador_id"));
+            j.setNom(resultSet.getString("nom"));
+            j.setCognom(resultSet.getString("cognom"));
+            j.setDataNaixement(resultSet.getString("data_naixement"));
+            j.setAlcada(resultSet.getFloat("alcada"));
+            j.setPes(resultSet.getFloat("pes"));
+            j.setDorsal(resultSet.getString("dorsal"));
+            j.setPosicio(resultSet.getString("posicio"));
+            j.setEquipId(resultSet.getLong("equip_id"));
+        } else {
+            System.out.println("ERROR no s'ha trobar el Jugador READ!");
+        }
+
+        return j;
+    }
+
+    @Override
+    public boolean update(Jugadres jugadres) throws Exception {
+
+        Connection connection = Connexio.conectarBD();
+
+        PreparedStatement statement = connection.prepareStatement( "UPDATE jugadors" +
+                        "SET jugador_id = ?, nom = ?, cognom = ?, data_naixement = ?, alcada = ?, pes = ?, dorsal = ?, posicio = ?, equip_id = ? " +
+                        "WHERE id = 2;");
+        statement.setLong(1, jugadres.getJugadorId());
         statement.setString(2, jugadres.getNom());
         statement.setString(3, jugadres.getCognom());
         statement.setString(4, jugadres.getDataNaixement());
@@ -26,20 +76,6 @@ public class JugadoresDAO implements DAO<Jugadres> {
         statement.setLong(9, jugadres.getEquipId());
         ResultSet resultSet = statement.executeQuery();
 
-        return true;
-    }
-
-    @Override
-    public Jugadres read(int id_jugador) {
-        Jugadres j;
-
-
-
-        return null;
-    }
-
-    @Override
-    public boolean update(Jugadres jugadres) {
         return false;
     }
 
@@ -102,7 +138,8 @@ public class JugadoresDAO implements DAO<Jugadres> {
             if(resultatId.next()) {
                 jugadorID = resultatId.getLong("jugador_id");
             } else {
-                System.out.println("No s'ha trobat cap equip amb aquest nom!");
+
+
             }
 
         } catch (SQLException e) {
@@ -113,24 +150,28 @@ public class JugadoresDAO implements DAO<Jugadres> {
     }
 
     public Jugadres exercici4() throws Exception {
-        String nomJug, nomEquip, nom, cognom;
+        String nomJug, nomEquip, nom = "", cognom = "", resposta;
         String[] arrayNom;
         Long idJug, idEquip;
         JugadoresDAO j = new JugadoresDAO();
+        Jugadres jugador;
         EquipsDAO e = new EquipsDAO();
 
 
         System.out.print("Escriu el nom i cognoms d'un Jugador (LeBron James): ");
         nomJug = scan.nextLine().trim();
 
-        arrayNom = nomJug.split(" ");
-        if (arrayNom.length > 2) {
-            nom = arrayNom[0] + " " + arrayNom[1];
-            cognom = arrayNom[2];
-        } else {
-            nom = arrayNom[0];
-            cognom = arrayNom[1];
+        if (nomJug.matches("\\w+\\s\\w+")){
+            arrayNom = nomJug.split(" ");
+            if (arrayNom.length > 2) {
+                nom = arrayNom[0] + " " + arrayNom[1];
+                cognom = arrayNom[2];
+            } else {
+                nom = arrayNom[0];
+                cognom = arrayNom[1];
+            }
         }
+
 
         System.out.print("Escriu el nom de l'equip: ");
         nomEquip = scan.nextLine().trim();
@@ -140,17 +181,27 @@ public class JugadoresDAO implements DAO<Jugadres> {
 
 
         if (idJug == null) {
+            Vista.missatgeJugadorNoTrobat();
             j.create(infoJugador(nom, cognom, idEquip));
 
         } else {
-            Vista.missatgeJugadorTrovat();
-            j.update();
+            Vista.missatgeJugadorTrobat();
+            do {
+                resposta = scan.nextLine().toUpperCase().trim();
+                if (resposta.equals("S")) {
+                    jugador = j.read(idJug);
+                    jugador.setEquipId(idEquip);
+                    j.update(jugador);
+                } else {
+                    System.out.println("OK!");
+                }
+            } while (resposta.equals("S") || resposta.equals("N"));
 
         }
 
 
         return null;
-    }
+    } //EXERCICI 4
 
     public Jugadres infoJugador(String n, String c, long id) {
         String[] posi = {"Center", "Center-Forward", "Forward", "Forward-Center", "Forward-Guard", "Guard", "Guard-Forward"};
@@ -175,9 +226,9 @@ public class JugadoresDAO implements DAO<Jugadres> {
         scan.nextLine();
         jug.setPes(f);
 
-        System.out.print("Alçada del jugador: ");
-        f = scan.nextFloat();
-        jug.setDorsal(n);
+        System.out.print("Dorsal del jugador: ");
+        s = scan.nextLine();
+        jug.setDorsal(s);
 
         do {
             System.out.println("Posicións = Center, Center-Forward, Forward, Forward-Center, Forward-Guard, Guard, Guard-Forward.");
@@ -186,7 +237,7 @@ public class JugadoresDAO implements DAO<Jugadres> {
             jug.setDorsal(n);
 
             for (int i = 0; i < posi.length; i++) {
-                if (posi[i].equals(n)) {
+                if (n.equals(posi[i])) {
                     b = true;
                     break;
                 }

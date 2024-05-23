@@ -41,20 +41,21 @@ public class Vista {
         llistaEstadistiques.clear();
     }
     public static void missatgeJugadorTrobat() {
-        System.out.println("Hi ha un jugador amb aquest nom, ja existeix aquest jugador!");
-        System.out.println("Vols que canvi al equip que has introduït? (S = Si | N = No)");
+        System.out.println("\nHi ha un jugador amb aquest nom, ja existeix aquest jugador!");
+        System.out.println("Vols que canvi al equip que has introduït? (S = Si | N = No)\n");
     }
     public static void missatgeJugadorNoTrobat() {
-        System.out.println("No s'ha trobat cap jugador amb aquest nom!");
-        System.out.println("Ara crearem el jugador, amb el nom que has introduït i al equip que has seleccionat.");
+        System.out.println("\nNo s'ha trobat cap jugador amb aquest nom!");
+        System.out.println("Ara crearem el jugador, amb el nom que has introduït i al equip que has seleccionat.\n");
     }
-    public static void mostrarJugador(Jugadres jugadr) {
-        System.out.println("Nom: " + jugadr.getNom() + " " + jugadr.getCognom() +
-                "\nAlçada: " + jugadr.getAlcada() +
-                "\nPes: " + jugadr.getPes() +
-                "\nDorsal: " + jugadr.getDorsal() +
-                "\nPosició: " + jugadr.getPosicio());
-    }
+    public static void mostrarJugador(Jugadres jugador, int i) {
 
+        System.out.println("\nS'han crear un total de " + i + " jugadors. Aquí les seves dades.");
+        System.out.println("Nom: " + jugador.getNom() + " " + jugador.getCognom() +
+                "\nAlçada: " + jugador.getAlcada() +
+                "\nPes: " + jugador.getPes() +
+                "\nDorsal: " + jugador.getDorsal() +
+                "\nPosició: " + jugador.getPosicio());
+    }
 
 }

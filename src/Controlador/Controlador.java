@@ -32,7 +32,7 @@ public class Controlador {
                         players = jugadorDAO.all();
                         Vista.mostrarJugadors(players);
                     } catch (Exception e) {
-                        System.out.println("ERRO!! " + e.getMessage());
+                        System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
                     }
                     break;
 
@@ -45,7 +45,7 @@ public class Controlador {
                         estadicticaJugador = EstadisticaJugador.all();
                         Vista.mostrarEstadisticas(estadicticaJugador);
                     } catch (Exception e) {
-                        System.out.println("ERRO!! " + e.getMessage());
+                        System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
                     }
                     break;
                     
@@ -64,20 +64,23 @@ public class Controlador {
                     break;
 
                 case "4":
-                    Jugadres jugador;
                     System.out.println("Exercici 4:");
 
                     try {
-                        jugador = jugadorDAO.exercici4();
-                        Vista.mostrarJugador(jugador);
+                        jugadorDAO.exercici4();
                     } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
                     }
 
                     break;
                     
                 case "5":
                     System.out.println("Exercici 5:");
+                    try {
+
+                    } catch (Exception e) {
+                        System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
+                    }
                     break;
 
                 case "6":

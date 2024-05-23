@@ -13,19 +13,30 @@ public class JugadoresDAO implements DAO<Jugadres> {
 
     @Override
     public boolean create(Jugadres jugadres) throws Exception {
-        Connection connection = Connexio.conectarBD();
+        try {
+            Connection connection = Connexio.conectarBD();
 
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO `jugadors` (`nom`, `cognom`, `data_naixement`, `alcada`, `pes`, `dorsal`, `posicio`, `equip_id`) VALUES " +
-                "(?, ?, ?, ?, ?, ?, ?, ?),");
-        statement.setString(1, jugadres.getNom());
-        statement.setString(2, jugadres.getCognom());
-        statement.setString(3, jugadres.getDataNaixement());
-        statement.setFloat(4, jugadres.getAlcada());
-        statement.setFloat(5, jugadres.getPes());
-        statement.setString(6, jugadres.getDorsal());
-        statement.setString(7, jugadres.getPosicio());
-        statement.setLong(8, jugadres.getEquipId());
-        ResultSet resultSet = statement.executeQuery();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO jugadors (nom, cognom, data_naixement, alcada, pes, dorsal, posicio, equip_id) " +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            statement.setString(1, jugadres.getNom());
+            statement.setString(2, jugadres.getCognom());
+            statement.setString(3, jugadres.getDataNaixement());
+            statement.setFloat(4, jugadres.getAlcada());
+            statement.setFloat(5, jugadres.getPes());
+            statement.setString(6, jugadres.getDorsal());
+            statement.setString(7, jugadres.getPosicio());
+            statement.setLong(8, jugadres.getEquipId());
+            int rs  = statement.executeUpdate();
+            if (rs == 1) {
+                Vista.mostrarJugador(jugadres, rs);
+            } else {
+                System.out.println("ERROR!");
+            }
+
+
+        } catch (Exception e) {
+            System.out.println(e.getClass() + " ES AL INSERT");
+        }
 
         return true;
     }
@@ -161,15 +172,13 @@ public class JugadoresDAO implements DAO<Jugadres> {
         System.out.print("Escriu el nom i cognoms d'un Jugador (LeBron James): ");
         nomJug = scan.nextLine().trim();
 
-        if (nomJug.matches("\\w+\\s\\w+")){
-            arrayNom = nomJug.split(" ");
-            if (arrayNom.length > 2) {
-                nom = arrayNom[0] + " " + arrayNom[1];
-                cognom = arrayNom[2];
-            } else {
-                nom = arrayNom[0];
-                cognom = arrayNom[1];
-            }
+        arrayNom = nomJug.split(" ");
+        if (arrayNom.length > 2) {
+            nom = arrayNom[0] + " " + arrayNom[1];
+            cognom = arrayNom[2];
+        } else {
+            nom = arrayNom[0];
+            cognom = arrayNom[1];
         }
 
 
@@ -182,7 +191,8 @@ public class JugadoresDAO implements DAO<Jugadres> {
 
         if (idJug == null) {
             Vista.missatgeJugadorNoTrobat();
-            j.create(infoJugador(nom, cognom, idEquip));
+            jugador = infoJugador(nom, cognom, idEquip);
+            create(jugador);
 
         } else {
             Vista.missatgeJugadorTrobat();
@@ -203,18 +213,22 @@ public class JugadoresDAO implements DAO<Jugadres> {
         return null;
     } //EXERCICI 4
 
-    public Jugadres infoJugador(String n, String c, long id) {
+    public Jugadres infoJugador(String nom, String c, long id) {
         String[] posi = {"Center", "Center-Forward", "Forward", "Forward-Center", "Forward-Guard", "Guard", "Guard-Forward"};
         boolean b = false;
         String s;
         float f;
-        Jugadres jug = new Jugadres(n, c, "", 0f, 0f, "", "", id);
+        Jugadres jug = new Jugadres("", "", "", 0f, 0f, "", "", 0);
+
+        jug.setNom(nom);
+        jug.setCognom(c);
+        jug.setEquipId(id);
 
         do {
             System.out.print("Escriu la data de naixement (yyyy-mm-dd): ");
-            n = scan.nextLine().trim();
-            jug.setDataNaixement(n);
-        } while (!n.matches("\\d{4}-\\d{1,2}-\\d{1,2}"));
+            s = scan.nextLine().trim();
+            jug.setDataNaixement(s);
+        } while (!s.matches("\\d{4}-\\d{1,2}-\\d{1,2}"));
 
         System.out.print("Alçada del jugador: ");
         f = scan.nextFloat();
@@ -233,11 +247,11 @@ public class JugadoresDAO implements DAO<Jugadres> {
         do {
             System.out.println("Posicións = Center, Center-Forward, Forward, Forward-Center, Forward-Guard, Guard, Guard-Forward.");
             System.out.print("Posició del jugador: ");
-            n = scan.nextLine();
-            jug.setDorsal(n);
+            s = scan.nextLine();
+            jug.setPosicio(s);
 
             for (int i = 0; i < posi.length; i++) {
-                if (n.equals(posi[i])) {
+                if (s.equals(posi[i])) {
                     b = true;
                     break;
                 }

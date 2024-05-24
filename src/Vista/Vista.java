@@ -3,6 +3,7 @@ package Vista;
 import Model.Estadistiques_jugadors;
 import Model.Estadistiques_jugadorsDAO;
 import Model.Jugadres;
+import Model.Partits;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,11 @@ public class Vista {
             System.out.println("Jugador: " + j.getNom() + " " + j.getCognom());
         }
         llistaJugadors.clear();
+    }
+    public static void mostrarPartits(List<Partits> llistaPartits) {
+        for (Partits p : llistaPartits) {
+            System.out.println("Equip: ");
+        }
     }
     public static void mostrarEstadisticas(List<Estadistiques_jugadors> llistaEstadistiques) {
         for (Estadistiques_jugadors e : llistaEstadistiques) {

@@ -43,16 +43,15 @@ public class JugadoresDAO implements DAO<Jugadres> {
 
     @Override
     public Jugadres read(Long id_jugador) throws SQLException {
-        Jugadres j = new Jugadres(0, "", "", "", 0f, 0f, "", "", 0);
+        Jugadres j = new Jugadres(id_jugador.intValue(), "", "", "", 0f, 0f, "", "", 0);
 
         Connection connection = Connexio.conectarBD();
 
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM jugadors WHERE jugador_id = ?");
-        statement.setLong(2, id_jugador);
+        statement.setLong(1, id_jugador);
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
-            j.setJugadorId(resultSet.getInt("jugador_id"));
             j.setNom(resultSet.getString("nom"));
             j.setCognom(resultSet.getString("cognom"));
             j.setDataNaixement(resultSet.getString("data_naixement"));
@@ -75,7 +74,7 @@ public class JugadoresDAO implements DAO<Jugadres> {
 
         PreparedStatement statement = connection.prepareStatement( "UPDATE jugadors" +
                         "SET jugador_id = ?, nom = ?, cognom = ?, data_naixement = ?, alcada = ?, pes = ?, dorsal = ?, posicio = ?, equip_id = ? " +
-                        "WHERE id = 2;");
+                        "WHERE jugador_id = ?;");
         statement.setLong(1, jugadres.getJugadorId());
         statement.setString(2, jugadres.getNom());
         statement.setString(3, jugadres.getCognom());
@@ -85,7 +84,13 @@ public class JugadoresDAO implements DAO<Jugadres> {
         statement.setString(7, jugadres.getDorsal());
         statement.setString(8, jugadres.getPosicio());
         statement.setLong(9, jugadres.getEquipId());
-        ResultSet resultSet = statement.executeQuery();
+        statement.setLong(10, jugadres.getJugadorId());
+        int rs  = statement.executeUpdate();
+        if (rs == 1) {
+            System.out.println("S'ha actualitzat correctament.");
+        } else {
+            System.out.println("NO s'ha actualitzat.");
+        }
 
         return false;
     }
@@ -260,6 +265,40 @@ public class JugadoresDAO implements DAO<Jugadres> {
         } while (!b);
 
         return jug;
+    }
+
+    public Jugadres canviEquip() throws Exception {
+        JugadoresDAO j = new JugadoresDAO();
+        EquipsDAO e = new EquipsDAO();
+        Jugadres jugador;
+        String nomJug, nomEquip;
+        Long idJug, idEquip;
+
+        System.out.print("Nom del jugador: ");
+        nomJug = scan.nextLine().trim();
+        try {
+            idJug = trovarJugadorId(nomJug);
+        } catch (Exception f) {
+            System.out.println("No s'ha trobat el Jugador!");
+            return null;
+        }
+
+        System.out.print("Nom del equip on vols que vagi: ");
+        nomEquip = scan.nextLine().trim();
+        try {
+            idEquip = e.trovarEquipId(nomEquip);
+        } catch (Exception f) {
+            System.out.println("No s'ha trobat el Equip!");
+            return null;
+        }
+
+        jugador = j.read(idJug);
+        jugador.setEquipId(idEquip);
+        j.update(jugador);
+
+
+
+        return jugador;
     }
 
 }

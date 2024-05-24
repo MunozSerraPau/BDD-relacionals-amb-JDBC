@@ -50,16 +50,16 @@ public class Controlador {
                     break;
                     
                 case "3":
-                    //List<Estadistiques_jugadors> estadicticaJugador;
-                    //Estadistiques_jugadorsDAO estadJug = new Estadistiques_jugadorsDAO();
+                    List<Partits> resultatsPartits;
+                    PartitsDAO resultatPartitsDAO = new PartitsDAO();
 
                     System.out.println("Exercici 3:");
-                    //try {
-                    //    estadicticaJugador = estadJug.all();
-                    //    Vista.mostrarEstadisticas(estadicticaJugador);
-                    //} catch (Exception e) {
-                    //    System.out.println("ERRO!! " + e.getMessage());
-                    //}
+                    try {
+                        resultatsPartits = resultatPartitsDAO.all();
+                        Vista.mostrarPartits(resultatsPartits);
+                    } catch (Exception e) {
+                        System.out.println("ERRO!! " + e.getMessage());
+                    }
 
                     break;
 
@@ -75,8 +75,14 @@ public class Controlador {
                     break;
                     
                 case "5":
+                    Jugadres jug;
                     System.out.println("Exercici 5:");
                     try {
+                        jug = jugadorDAO.canviEquip();
+                        if (jug != null) {
+                            Vista.mostrarJugador(jug, 1);
+                        }
+
 
                     } catch (Exception e) {
                         System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());

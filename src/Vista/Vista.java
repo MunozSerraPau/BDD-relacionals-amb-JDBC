@@ -5,6 +5,7 @@ import Model.Estadistiques_jugadorsDAO;
 import Model.Jugadres;
 import Model.Partits;
 
+import javax.lang.model.util.ElementScanner6;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +33,15 @@ public class Vista {
         llistaJugadors.clear();
     }
     public static void mostrarPartits(List<Partits> llistaPartits) {
-        for (Partits p : llistaPartits) {
-            System.out.println("Equip: ");
+        int contador = 1;
+        for (int i = 0; i < llistaPartits.size(); i++) {
+            if (i % 2 == 0) {
+                System.out.println("Partit " + contador + ":");
+                System.out.println(llistaPartits.get(i).getDataPartit() + ": " + llistaPartits.get(i).getEquipId());
+                ++contador;
+            } else {
+                System.out.println(llistaPartits.get(i).getDataPartit() + ": " + llistaPartits.get(i).getEquipId() + "\n");
+            }
         }
     }
     public static void mostrarEstadisticas(List<Estadistiques_jugadors> llistaEstadistiques) {

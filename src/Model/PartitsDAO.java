@@ -5,10 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class PartitsDAO implements DAO<Partits> {
     public static Scanner scan = new Scanner(System.in);
@@ -48,15 +45,15 @@ public class PartitsDAO implements DAO<Partits> {
         String nomEquip;
         Long idEquip;
         EquipsDAO eDAO = new EquipsDAO();
+        List<Partits> llistaPartits = new ArrayList<>();
 
-        System.out.println("Nom del equip (Los Angeles Lakers):");
+        System.out.print("Nom del equip (Los Angeles Lakers): ");
         nomEquip = scan.nextLine().trim();
 
         Connection connection = Connexio.conectarBD();
-
         idEquip = eDAO.trovarEquipId(nomEquip);
 
-        PreparedStatement statement = connection.prepareStatement("SELECT (SELECT SUM(punts) FROM estadistiques_jugadors WHERE equip_id = p.equip_id AND partit_id = p.partit_id) AS 'Punts', CONCAT(e.ciutat, ' ', e.nom) AS 'Equip', p.partit_id " +
+        PreparedStatement statement = connection.prepareStatement("SELECT (SELECT SUM(punts) FROM estadistiques_jugadors WHERE equip_id = p.equip_id AND partit_id = p.partit_id) AS 'punts', CONCAT(e.ciutat, ' ', e.nom) AS 'nomEquip' " +
                 " FROM partits p " +
                 " INNER JOIN equips e ON p.equip_id = e.equip_id " +
                 "WHERE p.partit_id IN (SELECT partit_id FROM partits WHERE equip_id = ?) " +
@@ -66,9 +63,11 @@ public class PartitsDAO implements DAO<Partits> {
 
         while (resultSet.next()) {
             Partits game = new Partits(0, "");
-
+            game.setEquipId(resultSet.getInt("punts"));
+            game.setDataPartit(resultSet.getString("nomEquip"));
+            llistaPartits.add(game);
         }
 
-        return null;
+        return llistaPartits;
     }
 }

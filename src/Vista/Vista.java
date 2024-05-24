@@ -62,7 +62,7 @@ public class Vista {
         System.out.println("\nNo s'ha trobat cap jugador amb aquest nom!");
         System.out.println("Ara crearem el jugador, amb el nom que has introduït i al equip que has seleccionat.\n");
     }
-    public static void mostrarJugador(Jugadres jugador, int i) {
+    public static void mostrarJugadorNou(Jugadres jugador, int i) {
 
         System.out.println("\nS'han crear un total de " + i + " jugadors. Aquí les seves dades.");
         System.out.println("Nom: " + jugador.getNom() + " " + jugador.getCognom() +
@@ -70,6 +70,16 @@ public class Vista {
                 "\nPes: " + jugador.getPes() +
                 "\nDorsal: " + jugador.getDorsal() +
                 "\nPosició: " + jugador.getPosicio());
+    }
+    public static void mostrarJugadorActualitzat(Jugadres jugador) {
+
+        System.out.println("\nS'ha actualitzat un jugador. Aquí les seves dades.");
+        System.out.println("Nom: " + jugador.getNom() + " " + jugador.getCognom() +
+                "\nAlçada: " + jugador.getAlcada() +
+                "\nPes: " + jugador.getPes() +
+                "\nDorsal: " + jugador.getDorsal() +
+                "\nPosició: " + jugador.getPosicio() +
+                "\nEquipId: " + jugador.getEquipId());
     }
 
 }

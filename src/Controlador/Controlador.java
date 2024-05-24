@@ -80,9 +80,8 @@ public class Controlador {
                     try {
                         jug = jugadorDAO.canviEquip();
                         if (jug != null) {
-                            Vista.mostrarJugador(jug, 1);
+                            Vista.mostrarJugadorActualitzat(jug);
                         }
-
 
                     } catch (Exception e) {
                         System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());

@@ -28,7 +28,7 @@ public class JugadoresDAO implements DAO<Jugadres> {
             statement.setLong(8, jugadres.getEquipId());
             int rs  = statement.executeUpdate();
             if (rs == 1) {
-                Vista.mostrarJugador(jugadres, rs);
+                Vista.mostrarJugadorNou(jugadres, rs);
             } else {
                 System.out.println("ERROR!");
             }
@@ -72,9 +72,9 @@ public class JugadoresDAO implements DAO<Jugadres> {
 
         Connection connection = Connexio.conectarBD();
 
-        PreparedStatement statement = connection.prepareStatement( "UPDATE jugadors" +
+        PreparedStatement statement = connection.prepareStatement( "UPDATE jugadors " +
                         "SET jugador_id = ?, nom = ?, cognom = ?, data_naixement = ?, alcada = ?, pes = ?, dorsal = ?, posicio = ?, equip_id = ? " +
-                        "WHERE jugador_id = ?;");
+                        "WHERE jugador_id = ? ");
         statement.setLong(1, jugadres.getJugadorId());
         statement.setString(2, jugadres.getNom());
         statement.setString(3, jugadres.getCognom());

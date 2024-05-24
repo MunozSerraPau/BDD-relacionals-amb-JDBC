@@ -38,6 +38,29 @@ public class EquipsDAO implements DAO<Equips> {
 
     @Override
     public boolean update(Equips equips) {
+
+        Connection connection = Connexio.conectarBD();
+
+        PreparedStatement statement = connection.prepareStatement( "UPDATE jugadors " +
+                "SET jugador_id = ?, nom = ?, cognom = ?, data_naixement = ?, alcada = ?, pes = ?, dorsal = ?, posicio = ?, equip_id = ? " +
+                "WHERE jugador_id = ? ");
+        statement.setLong(1, equips.getJugadorId());
+        statement.setString(2, equips.getNom());
+        statement.setString(3, equips.getCognom());
+        statement.setString(4, equips.getDataNaixement());
+        statement.setFloat(5, equips.getAlcada());
+        statement.setFloat(6, equips.getPes());
+        statement.setString(7, equips.getDorsal());
+        statement.setString(8, equips.getPosicio());
+        statement.setLong(9, equips.getEquipId());
+        statement.setLong(10, equips.getJugadorId());
+        int rs  = statement.executeUpdate();
+        if (rs == 1) {
+            System.out.println("S'ha actualitzat correctament.");
+        } else {
+            System.out.println("NO s'ha actualitzat.");
+        }
+
         return false;
     }
 

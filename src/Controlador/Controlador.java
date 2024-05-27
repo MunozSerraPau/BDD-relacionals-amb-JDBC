@@ -105,6 +105,11 @@ public class Controlador {
 
                 case "8":
                     System.out.println("Exercici 8:");
+                    try {
+
+                    } catch (Exception e) {
+                        System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
+                    }
                     break;
 
                 case "9":

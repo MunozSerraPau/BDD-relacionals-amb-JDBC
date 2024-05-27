@@ -1,9 +1,6 @@
 package Vista;
 
-import Model.Estadistiques_jugadors;
-import Model.Estadistiques_jugadorsDAO;
-import Model.Jugadres;
-import Model.Partits;
+import Model.*;
 
 import javax.lang.model.util.ElementScanner6;
 import java.util.ArrayList;
@@ -80,6 +77,17 @@ public class Vista {
                 "\nDorsal: " + jugador.getDorsal() +
                 "\nPosició: " + jugador.getPosicio() +
                 "\nEquipId: " + jugador.getEquipId());
+    }
+    public static void mostrarJugadorHistoric(Jugadors_historics jugHisto) {
+        System.out.println("\nS'ha actualitzat un jugador. Aquí les seves dades.");
+        System.out.println("Nom: " + jugHisto.getNom() + " " + jugHisto.getCognom() +
+                "\nDorsal: " + jugHisto.getDorsal() +
+                "\nPosició: " + jugHisto.getPosicio() +
+                "\nPunts Totals anotats: " + jugHisto.getPuntsTotals() +
+                "\nMinuts Totals jugats: " + jugHisto.getMinutsTotals() +
+                "\nPunts Totals anotats: " + jugHisto.get() +
+                "\nMinuts Totals jugats: " + jugHisto.getMinutsTotals() +
+                "\nEquipId: " + jugHisto.getEquipId());
     }
 
 }

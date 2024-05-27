@@ -118,11 +118,11 @@ public class JugadoresDAO implements DAO<Jugadres> {
         List<Jugadres> players = new ArrayList<>();
         EquipsDAO e = new EquipsDAO();
 
-        Connection connection = Connexio.conectarBD();
-
         System.out.print("Escriu el nom del equip: ");
         nomEquip = scan.nextLine().trim();
         idEquip = e.trovarEquipId(nomEquip);
+
+        Connection connection = Connexio.conectarBD();
 
         PreparedStatement statement = connection.prepareStatement("SELECT nom, cognom FROM jugadors WHERE equip_id = ?");
         statement.setLong(1, idEquip);

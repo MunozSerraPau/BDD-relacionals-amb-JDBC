@@ -267,7 +267,7 @@ public class JugadoresDAO implements DAO<Jugadres> {
         return jug;
     }
 
-    public Jugadres canviEquip() throws Exception {
+    public Jugadres canviDeEquip() throws Exception {
         JugadoresDAO j = new JugadoresDAO();
         EquipsDAO e = new EquipsDAO();
         Jugadres jugador;

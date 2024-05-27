@@ -78,7 +78,7 @@ public class Controlador {
                     Jugadres jug;
                     System.out.println("Exercici 5:");
                     try {
-                        jug = jugadorDAO.canviEquip();
+                        jug = jugadorDAO.canviDeEquip();
                         if (jug != null) {
                             Vista.mostrarJugadorActualitzat(jug);
                         }
@@ -108,7 +108,15 @@ public class Controlador {
                     break;
 
                 case "9":
+                    Equips equip;
                     System.out.println("Exercici 9:");
+                    try {
+                        equip = equipDAO.canviarNom();
+                        equipDAO.update(equip);
+
+                    } catch (Exception e) {
+                        System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
+                    }
                     break;
 
                 case "0":

@@ -5,11 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
 
 public class EquipsDAO implements DAO<Equips> {
+    public static Scanner scan = new Scanner(System.in);
+
     // CRUD
-
-
     @Override
     public boolean create(Equips equips) {
 
@@ -37,23 +38,22 @@ public class EquipsDAO implements DAO<Equips> {
     }
 
     @Override
-    public boolean update(Equips equips) {
+    public boolean update(Equips equips) throws SQLException {
 
         Connection connection = Connexio.conectarBD();
 
-        PreparedStatement statement = connection.prepareStatement( "UPDATE jugadors " +
-                "SET jugador_id = ?, nom = ?, cognom = ?, data_naixement = ?, alcada = ?, pes = ?, dorsal = ?, posicio = ?, equip_id = ? " +
-                "WHERE jugador_id = ? ");
-        statement.setLong(1, equips.getJugadorId());
+        PreparedStatement statement = connection.prepareStatement( "UPDATE equips " +
+                " SET equip_id = ?, nom = ?, acronim = ?, ciutat = ?, divisio = ?, guanyades = ?, perdudes = ? " +
+                " WHERE equip_id = ? ");
+        statement.setInt(1, equips.getEquip_id());
         statement.setString(2, equips.getNom());
-        statement.setString(3, equips.getCognom());
-        statement.setString(4, equips.getDataNaixement());
-        statement.setFloat(5, equips.getAlcada());
-        statement.setFloat(6, equips.getPes());
-        statement.setString(7, equips.getDorsal());
-        statement.setString(8, equips.getPosicio());
-        statement.setLong(9, equips.getEquipId());
-        statement.setLong(10, equips.getJugadorId());
+        statement.setString(3, equips.getAcronim());
+        statement.setString(4, equips.getCiutat());
+        statement.setString(5, equips.getDivisio());
+        statement.setFloat(6, equips.getGuanyades());
+        statement.setInt(7, equips.getPerdudes());
+        statement.setInt(8, equips.getEquip_id());
+
         int rs  = statement.executeUpdate();
         if (rs == 1) {
             System.out.println("S'ha actualitzat correctament.");
@@ -65,9 +65,27 @@ public class EquipsDAO implements DAO<Equips> {
     }
 
     @Override
-    public Equips read(Long id_equip) {
+    public Equips read(Long id_equip) throws SQLException {
+        Equips e = new Equips(id_equip.intValue(), "", "", "", "", 0, 0);
 
-        return null;
+        Connection connection = Connexio.conectarBD();
+
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM equips WHERE equip_id = ?");
+        statement.setLong(1, id_equip);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            e.setEquip_id(resultSet.getInt("equip_id"));
+            e.setCiutat(resultSet.getString("ciutat"));
+            e.setNom(resultSet.getString("nom"));
+            e.setAcronim(resultSet.getString("acronim"));
+            e.setDivisio(resultSet.getString("divisio"));
+            e.setGuanyades(resultSet.getInt("guanyades"));
+            e.setPerdudes(resultSet.getInt("perdudes"));
+        } else {
+            System.out.println("ERROR no s'ha trobar el Jugador READ!");
+        }
+        return e;
     }
 
     public Long trovarEquipId (String n) {
@@ -94,5 +112,22 @@ public class EquipsDAO implements DAO<Equips> {
         }
 
         return equipId;
+    }
+
+    public Equips canviarNom() throws SQLException {
+        String s, nomCanvi;
+        Long idEquip;
+        Equips equip;
+
+        System.out.print("Nom de l'equip (Memphis Grizzlies): ");
+        s = scan.nextLine();
+        System.out.print("Nom de la nova franquícia (Vancouver): ");
+        nomCanvi = scan.nextLine();
+
+        idEquip =  trovarEquipId(s);
+        equip = read(idEquip);
+        equip.setCiutat(nomCanvi);
+
+        return equip;
     }
 }

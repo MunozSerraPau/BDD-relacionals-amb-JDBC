@@ -92,7 +92,7 @@ public class Controlador {
                     System.out.println("Exercici 6:");
 
                     try {
-
+                        EstadisticaJugador.exercici6();
                     } catch (Exception e) {
                         System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
                     }

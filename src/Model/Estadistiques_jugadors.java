@@ -1,6 +1,6 @@
 package Model;
 
-public class Estadistiques_jugadors {
+public class  Estadistiques_jugadors {
 
     // VARIABLES
     private int jugadorId;

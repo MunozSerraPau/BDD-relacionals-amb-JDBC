@@ -1,14 +1,15 @@
 package Model;
 
-import Vista.Vista;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import Vista.Vista;
+import jdk.jshell.ImportSnippet;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
 
@@ -106,39 +107,61 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
         return estadisticaJugador;
     }   // ECERCICI 2
 
-    public Estadistiques_jugadors obtenirEstadistiques(Long idJugador, Long idPartit) throws SQLException {
-        Estadistiques_jugadors ej = new Estadistiques_jugadors(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    public void exercici6() {
+        String rutaArxiu = "src/registres.txt";
+        String line;
+        int rs = 0;
 
-        Connection connection = Connexio.conectarBD();
+        try {
+            // Estableix la connexió a la base de dades
+            Connection connection = Connexio.conectarBD();
 
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM estadistiques_jugadors WHERE jugador_id = ? AND partit_id = ? ");
-        statement.setLong(1, idJugador);
-        statement.setLong(2, idPartit);
-        ResultSet resultSet = statement.executeQuery();
+            // Prepara la consulta d'actualització
+            PreparedStatement statement = connection.prepareStatement( "UPDATE estadistiques_jugadors SET"
+                    + " minuts_jugats = ?, punts = ?, tirs_anotats = ?, tirs_tirats = ?, tirs_triples_anotats = ?, tirs_triples_tirats = ?, tirs_lliures_anotats = ?, tirs_lliures_tirats = ?, rebots_ofensius = ?, rebots_defensius = ?, assistencies = ?, robades = ?, bloqueigs = ?"
+                    + " WHERE jugador_id = ? and partit_id = ? ");
 
-        if (resultSet.next()) {
-            ej.setJugadorId(resultSet.getInt("jugador_id"));
-            ej.setEquipId(resultSet.getInt("equip_id"));
-            ej.setPartitId(resultSet.getInt("partit_id"));
-            ej.setMinutsJugats(resultSet.getFloat("minuts_jugats"));
-            ej.setPunts(resultSet.getInt("punts"));
-            ej.setTirsAnotats(resultSet.getInt("tirs_anotats"));
-            ej.setTirsTirats(resultSet.getInt("tirs_tirats"));
-            ej.setTirsTriplesAnotats(resultSet.getInt("tirs_triples_anotats"));
-            ej.setTirsTriplesTirats(resultSet.getInt("tirs_triples_tirats"));
-            ej.setTirsLliuresAnotats(resultSet.getInt("tirs_lliures_anotats"));
-            ej.setTirsLliuresTirats(resultSet.getInt("tirs_lliures_anotats"));
-            ej.setRebotsOfensius(resultSet.getInt("rebots_ofensius"));
-            ej.setRebotsDefensius(resultSet.getInt("rebots_defensius"));
-            ej.setAssistencies(resultSet.getInt("assistencies"));
-            ej.setRobades(resultSet.getLong("robades"));
-            ej.setBloqueigs(resultSet.getLong("bloqueigs"));
-        } else {
-            System.out.println("ERROR no s'ha trobar la estadístiques del Jugadors!");
+            // Llegir les dades del fitxer
+            BufferedReader llegir = new BufferedReader(new FileReader(rutaArxiu));
+
+            while ((line = llegir.readLine())!= null) {
+
+                String[] registre = line.split(",");
+                statement.setFloat(1, Float.parseFloat(registre[3]));       // minuts_jugats
+                statement.setInt(2, Integer.parseInt(registre[4]));         // punts
+                statement.setInt(3, Integer.parseInt(registre[5]));         // tirs_anotats
+                statement.setInt(4, Integer.parseInt(registre[6]));         // tirs_tirats
+                statement.setInt(5, Integer.parseInt(registre[7]));         // tirs_triples_anotats
+                statement.setInt(6, Integer.parseInt(registre[8]));         // tirs_triples_tirats
+                statement.setInt(7, Integer.parseInt(registre[9]));         // tirs_lliures_anotats
+                statement.setInt(8, Integer.parseInt(registre[10]));        // tirs_lliures_tirats
+                statement.setInt(9, Integer.parseInt(registre[11]));        // rebots_ofensius
+                statement.setInt(10, Integer.parseInt(registre[12]));       // rebots_defensius
+                statement.setInt(11, Integer.parseInt(registre[13]));       // assistencies
+                statement.setInt(12, Integer.parseInt(registre[14]));       // robades
+                statement.setInt(13, Integer.parseInt(registre[15]));       // bloqueigs
+                statement.setInt(14, Integer.parseInt(registre[0]));        // jugador_id
+                statement.setInt(15, Integer.parseInt(registre[2]));        //partit_id
+
+                statement.executeUpdate();
+
+                rs++;
+            }
+
+            if (rs >= 1) {
+                System.out.println("S'ha actualitzat un total de " + rs + " registres.");
+            } else {
+                System.out.println("No s'han actualitzat cap registre.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error actualitzant el registre: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error llegint el fitxer: " + e.getMessage());
         }
 
-        return ej;
     }
+
     public void exercici7() throws SQLException {
         Estadistiques_jugadorsDAO ejDAO = new Estadistiques_jugadorsDAO();
         JugadoresDAO j = new JugadoresDAO();
@@ -270,6 +293,40 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
         ejDAO.update(ej);
         Vista.mostrarEstadistiquesActual(ej);
 
+    }
+
+    public Estadistiques_jugadors obtenirEstadistiques(Long idJugador, Long idPartit) throws SQLException {
+        Estadistiques_jugadors ej = new Estadistiques_jugadors(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+        Connection connection = Connexio.conectarBD();
+
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM estadistiques_jugadors WHERE jugador_id = ? AND partit_id = ? ");
+        statement.setLong(1, idJugador);
+        statement.setLong(2, idPartit);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            ej.setJugadorId(resultSet.getInt("jugador_id"));
+            ej.setEquipId(resultSet.getInt("equip_id"));
+            ej.setPartitId(resultSet.getInt("partit_id"));
+            ej.setMinutsJugats(resultSet.getFloat("minuts_jugats"));
+            ej.setPunts(resultSet.getInt("punts"));
+            ej.setTirsAnotats(resultSet.getInt("tirs_anotats"));
+            ej.setTirsTirats(resultSet.getInt("tirs_tirats"));
+            ej.setTirsTriplesAnotats(resultSet.getInt("tirs_triples_anotats"));
+            ej.setTirsTriplesTirats(resultSet.getInt("tirs_triples_tirats"));
+            ej.setTirsLliuresAnotats(resultSet.getInt("tirs_lliures_anotats"));
+            ej.setTirsLliuresTirats(resultSet.getInt("tirs_lliures_anotats"));
+            ej.setRebotsOfensius(resultSet.getInt("rebots_ofensius"));
+            ej.setRebotsDefensius(resultSet.getInt("rebots_defensius"));
+            ej.setAssistencies(resultSet.getInt("assistencies"));
+            ej.setRobades(resultSet.getLong("robades"));
+            ej.setBloqueigs(resultSet.getLong("bloqueigs"));
+        } else {
+            System.out.println("ERROR no s'ha trobar la estadístiques del Jugadors!");
+        }
+
+        return ej;
     }
 
 }

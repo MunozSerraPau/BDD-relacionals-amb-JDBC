@@ -96,7 +96,21 @@ public class JugadoresDAO implements DAO<Jugadres> {
     }
 
     @Override
-    public boolean delete(Jugadres jugadres) {
+    public boolean delete(Long id_Jugador) throws SQLException {
+
+        Connection connection = Connexio.conectarBD();
+
+        PreparedStatement statement = connection.prepareStatement("DELET FROM jugadors WHERE jugador_id = ?");
+        statement.setLong(1, id_Jugador);
+        int resultSet = statement.executeUpdate();
+
+        if (resultSet >= 1) {
+            System.out.println("S'ha eliminat correctament!");
+        } else {
+            System.out.println("No s'ah pogut eliminar.");
+        }
+
+
         return false;
     }
 
@@ -295,8 +309,6 @@ public class JugadoresDAO implements DAO<Jugadres> {
         jugador = j.read(idJug);
         jugador.setEquipId(idEquip);
         j.update(jugador);
-
-
 
         return jugador;
     }

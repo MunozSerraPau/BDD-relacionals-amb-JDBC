@@ -4,8 +4,8 @@ import java.sql.*;
 
 public class Connexio {
     public static Connection conectarBD() {
-        //String url = "jdbc:mysql://192.168.14.8:3306/NBA";
-        String url = "jdbc:mysql://192.168.56.103:3306/NBA";
+        String url = "jdbc:mysql://192.168.14.8:3306/NBA";
+        //String url = "jdbc:mysql://192.168.56.103:3306/NBA";
         String user = "perepi";
         String contra = "pastanaga";
 

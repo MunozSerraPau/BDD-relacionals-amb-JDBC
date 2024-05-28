@@ -2,7 +2,7 @@ package Model;
 
 public class Jugadors_historics {
     // variables
-    private int jugadorId;
+    private int jugador_Id;
     private String nom;
     private String cognom;
     private String dorsal;
@@ -14,13 +14,21 @@ public class Jugadors_historics {
     private int totalTriplesAnotats;
     private int totalTriplesTirats;
     private int totalLliuresAnotats;
+    private int totalLliuresTirars;
+    private int totalRebotsOfensius;
+    private int totalRebotsDefensius;
+    private int totalAssistencies;
+    private int totalRobades;
+    private int totalBloqueigs;
 
 
     // CONSTRUCTOR
-    public Jugadors_historics(int jugadorId, String cognom, String nom, String dorsal, String posicio, float minutsTotals, int puntsTotals, int totalTirsAnotats, int totalTirsTirats, int totalTriplesAnotats, int totalTriplesTirats, int totalLliuresAnotats) {
-        this.jugadorId = jugadorId;
-        this.cognom = cognom;
+
+
+    public Jugadors_historics(int jugador_Id, String nom, String cognom, String dorsal, String posicio, float minutsTotals, int puntsTotals, int totalTirsAnotats, int totalTirsTirats, int totalTriplesAnotats, int totalTriplesTirats, int totalLliuresAnotats, int totalLliuresTirars, int totalRebotsOfensius, int totalRebotsDefensius, int totalAssistencies, int totalRobades, int totalBloqueigs) {
+        this.jugador_Id = jugador_Id;
         this.nom = nom;
+        this.cognom = cognom;
         this.dorsal = dorsal;
         this.posicio = posicio;
         this.minutsTotals = minutsTotals;
@@ -30,11 +38,17 @@ public class Jugadors_historics {
         this.totalTriplesAnotats = totalTriplesAnotats;
         this.totalTriplesTirats = totalTriplesTirats;
         this.totalLliuresAnotats = totalLliuresAnotats;
+        this.totalLliuresTirars = totalLliuresTirars;
+        this.totalRebotsOfensius = totalRebotsOfensius;
+        this.totalRebotsDefensius = totalRebotsDefensius;
+        this.totalAssistencies = totalAssistencies;
+        this.totalRobades = totalRobades;
+        this.totalBloqueigs = totalBloqueigs;
+
     }
 
-
     // GETTERS
-    public int getJugadorId() { return jugadorId; }
+    public int getJugador_Id() { return jugador_Id; }
     public String getNom() { return nom; }
     public String getCognom() { return cognom; }
     public String getDorsal() { return dorsal; }
@@ -46,10 +60,15 @@ public class Jugadors_historics {
     public int getTotalTriplesAnotats() { return totalTriplesAnotats; }
     public int getTotalTriplesTirats() { return totalTriplesTirats; }
     public int getTotalLliuresAnotats() { return totalLliuresAnotats; }
-
+    public int getTotalLliuresTirars() { return totalLliuresTirars; }
+    public int getTotalRebotsOfensius() { return totalRebotsOfensius; }
+    public int getTotalRebotsDefensius() { return totalRebotsDefensius; }
+    public int getTotalAssistencies() { return totalAssistencies; }
+    public int getTotalRobades() { return totalRobades; }
+    public int getTotalBloqueigs() { return totalBloqueigs; }
 
     // SETTERS
-    public void setJugadorId(int jugadorId) { this.jugadorId = jugadorId; }
+    public void setJugador_Id(int jugador_Id) { this.jugador_Id = jugador_Id; }
     public void setNom(String nom) { this.nom = nom; }
     public void setCognom(String cognom) { this.cognom = cognom; }
     public void setDorsal(String dorsal) { this.dorsal = dorsal; }
@@ -61,4 +80,10 @@ public class Jugadors_historics {
     public void setTotalTriplesAnotats(int totalTriplesAnotats) { this.totalTriplesAnotats = totalTriplesAnotats; }
     public void setTotalTriplesTirats(int totalTriplesTirats) { this.totalTriplesTirats = totalTriplesTirats; }
     public void setTotalLliuresAnotats(int totalLliuresAnotats) { this.totalLliuresAnotats = totalLliuresAnotats; }
+    public void setTotalLliuresTirars(int totalLliuresTirars) { this.totalLliuresTirars = totalLliuresTirars; }
+    public void setTotalRebotsOfensius(int totalRebotsOfensius) { this.totalRebotsOfensius = totalRebotsOfensius; }
+    public void setTotalRebotsDefensius(int totalRebotsDefensius) { this.totalRebotsDefensius = totalRebotsDefensius; }
+    public void setTotalAssistencies(int totalAssistencies) { this.totalAssistencies = totalAssistencies; }
+    public void setTotalRobades(int totalRobades) { this.totalRobades = totalRobades; }
+    public void setTotalBloqueigs(int totalBloqueigs) { this.totalBloqueigs = totalBloqueigs; }
 }

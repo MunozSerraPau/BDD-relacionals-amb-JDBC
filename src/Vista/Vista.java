@@ -85,9 +85,9 @@ public class Vista {
                 "\nPosició: " + jugHisto.getPosicio() +
                 "\nPunts Totals anotats: " + jugHisto.getPuntsTotals() +
                 "\nMinuts Totals jugats: " + jugHisto.getMinutsTotals() +
-                "\nPunts Totals anotats: " + jugHisto.get() +
-                "\nMinuts Totals jugats: " + jugHisto.getMinutsTotals() +
-                "\nEquipId: " + jugHisto.getEquipId());
+                "\nAssistències Totals : " + jugHisto.getTotalAssistencies() +
+                "\nRobades Totals: " + jugHisto.getTotalRobades() +
+                "\nTotal de Triples Anotats: " + jugHisto.getTotalTriplesAnotats());
     }
 
 }

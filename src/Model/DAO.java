@@ -9,7 +9,7 @@ public interface DAO<T> {
     boolean create(T obj) throws Exception;
     T read(Long id) throws Exception;
     boolean update(T obj) throws Exception;
-    boolean delete(T obj);
+    boolean delete(Long id) throws SQLException;
 
     // ALTRES
     boolean exists(int id) throws Exception;

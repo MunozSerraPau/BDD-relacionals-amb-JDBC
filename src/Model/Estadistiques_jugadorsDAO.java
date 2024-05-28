@@ -26,7 +26,7 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
     }
 
     @Override
-    public boolean delete(Estadistiques_jugadors estadistiquesJugadors) {
+    public boolean delete(Long id_estadistiquesPartit) {
         return false;
     }
 

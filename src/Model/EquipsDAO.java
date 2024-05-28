@@ -33,7 +33,7 @@ public class EquipsDAO implements DAO<Equips> {
     }
 
     @Override
-    public boolean delete(Equips equips) {
+    public boolean delete(Long id_equip) {
         return false;
     }
 

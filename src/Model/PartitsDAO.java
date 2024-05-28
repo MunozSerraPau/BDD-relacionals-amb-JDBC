@@ -26,7 +26,7 @@ public class PartitsDAO implements DAO<Partits> {
     }
 
     @Override
-    public boolean delete(Partits partits) {
+    public boolean delete(Long id_partit) {
         return false;
     }
 

@@ -3,6 +3,7 @@ package Controlador;
 import Model.*;
 import Vista.*;
 
+import java.security.PublicKey;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Scanner;
 public class Controlador {
     public static EquipsDAO equipDAO = new EquipsDAO();
     public static JugadoresDAO jugadorDAO = new JugadoresDAO();
+    public static Jugadors_historicsDAO jugadorHistoricDAO = new Jugadors_historicsDAO();
 
     public static Estadistiques_jugadorsDAO EstadisticaJugador = new Estadistiques_jugadorsDAO();
 
@@ -104,9 +106,10 @@ public class Controlador {
                     break;
 
                 case "8":
+                    Jugadors_historicsDAO jh;
                     System.out.println("Exercici 8:");
                     try {
-
+                        jugadorHistoricDAO.exercici8();
                     } catch (Exception e) {
                         System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
                     }

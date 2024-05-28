@@ -1,8 +1,11 @@
 package Model;
 
+import Vista.Vista;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,12 +19,44 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
     }
 
     @Override
-    public Estadistiques_jugadors read(Long id_estadistiques) {
+    public Estadistiques_jugadors read(Long id_jugador) {
         return null;
     }
 
     @Override
-    public boolean update(Estadistiques_jugadors estadistiquesJugadors) {
+    public boolean update(Estadistiques_jugadors estadistiquesJugadors) throws SQLException {
+        Connection connection = Connexio.conectarBD();
+
+        PreparedStatement statement = connection.prepareStatement( "UPDATE estadistiques_jugadors" +
+                " SET jugador_id = ?, equip_id = ?, partit_id = ?, minuts_jugats = ?, punts = ?, tirs_anotats = ?, tirs_tirats = ?, tirs_triples_anotats = ?, tirs_triples_tirats = ?, tirs_lliures_anotats = ?, tirs_lliures_tirats = ?, rebots_ofensius = ?, rebots_defensius = ?, assistencies = ?, robades = ?, bloqueigs = ?" +
+                " WHERE jugador_id = ? and partit_id = ? ");
+        statement.setInt(1, estadistiquesJugadors.getJugadorId());
+        statement.setInt(2, estadistiquesJugadors.getEquipId());
+        statement.setInt(3, estadistiquesJugadors.getPartitId());
+        statement.setFloat(4, estadistiquesJugadors.getMinutsJugats());
+        statement.setFloat(5, estadistiquesJugadors.getPunts());
+        statement.setInt(6, estadistiquesJugadors.getTirsAnotats());
+        statement.setInt(7, estadistiquesJugadors.getTirsTirats());
+        statement.setInt(8, estadistiquesJugadors.getTirsTriplesAnotats());
+        statement.setInt(9, estadistiquesJugadors.getTirsTriplesTirats());
+        statement.setInt(10, estadistiquesJugadors.getTirsLliuresAnotats());
+        statement.setInt(11, estadistiquesJugadors.getTirsLliuresTirats());
+        statement.setInt(12, estadistiquesJugadors.getRebotsOfensius());
+        statement.setInt(13, estadistiquesJugadors.getRebotsDefensius());
+        statement.setFloat(14, estadistiquesJugadors.getAssistencies());
+        statement.setFloat(15, estadistiquesJugadors.getRobades());
+        statement.setFloat(16, estadistiquesJugadors.getBloqueigs());
+        statement.setLong(17, estadistiquesJugadors.getJugadorId());
+        statement.setLong(18, estadistiquesJugadors.getPartitId());
+
+
+        int rs  = statement.executeUpdate();
+        if (rs == 1) {
+            System.out.println("S'ha actualitzat correctament.");
+        } else {
+            System.out.println("NO s'ha actualitzat.");
+        }
+
         return false;
     }
 
@@ -70,5 +105,171 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
 
         return estadisticaJugador;
     }   // ECERCICI 2
+
+    public Estadistiques_jugadors obtenirEstadistiques(Long idJugador, Long idPartit) throws SQLException {
+        Estadistiques_jugadors ej = new Estadistiques_jugadors(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+        Connection connection = Connexio.conectarBD();
+
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM estadistiques_jugadors WHERE jugador_id = ? AND partit_id = ? ");
+        statement.setLong(1, idJugador);
+        statement.setLong(2, idPartit);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            ej.setJugadorId(resultSet.getInt("jugador_id"));
+            ej.setEquipId(resultSet.getInt("equip_id"));
+            ej.setPartitId(resultSet.getInt("partit_id"));
+            ej.setMinutsJugats(resultSet.getFloat("minuts_jugats"));
+            ej.setPunts(resultSet.getInt("punts"));
+            ej.setTirsAnotats(resultSet.getInt("tirs_anotats"));
+            ej.setTirsTirats(resultSet.getInt("tirs_tirats"));
+            ej.setTirsTriplesAnotats(resultSet.getInt("tirs_triples_anotats"));
+            ej.setTirsTriplesTirats(resultSet.getInt("tirs_triples_tirats"));
+            ej.setTirsLliuresAnotats(resultSet.getInt("tirs_lliures_anotats"));
+            ej.setTirsLliuresTirats(resultSet.getInt("tirs_lliures_anotats"));
+            ej.setRebotsOfensius(resultSet.getInt("rebots_ofensius"));
+            ej.setRebotsDefensius(resultSet.getInt("rebots_defensius"));
+            ej.setAssistencies(resultSet.getInt("assistencies"));
+            ej.setRobades(resultSet.getLong("robades"));
+            ej.setBloqueigs(resultSet.getLong("bloqueigs"));
+        } else {
+            System.out.println("ERROR no s'ha trobar la estadístiques del Jugadors!");
+        }
+
+        return ej;
+    }
+    public void exercici7() throws SQLException {
+        Estadistiques_jugadorsDAO ejDAO = new Estadistiques_jugadorsDAO();
+        JugadoresDAO j = new JugadoresDAO();
+        Estadistiques_jugadors ej;
+        String nomJug;
+        Long idJug, idPar;
+        int opcio, i;
+        float f;
+
+
+
+        System.out.print("Nom del jugador que volem modificar(Chris Paul): ");
+        nomJug = scan.nextLine().trim();
+        idJug = j.trovarJugadorId(nomJug);
+
+        System.out.print("Id del partit que volem modificar(22300005, 22300051, 22300060, 22300062, 22300087, 22300096): ");
+        idPar = scan.nextLong();
+
+        ej = ejDAO.obtenirEstadistiques(idJug, idPar);
+
+        Vista.mostrarEstadistiquesActual(ej);
+
+        do {
+            Vista.menuEstadistiques();
+            System.out.print("Escull una opció (0 per acabar de editar): ");
+            opcio = scan.nextInt();
+            scan.nextLine();
+
+            switch (opcio) {
+                case 0:
+                    System.out.println("FINAL.");
+                    break;
+
+                case 1:
+                    System.out.print("Minuts jugats: ");
+                    f = scan.nextFloat();
+                    scan.nextLine();
+                    ej.setMinutsJugats(f);
+                    break;
+
+                case 2:
+                    System.out.print("Punts: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setPunts(i);
+                    break;
+
+                case 3:
+                    System.out.print("Tirs Anotats: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setTirsAnotats(i);
+                    break;
+
+                case 4:
+                    System.out.print("Tirs Tirats: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setTirsTirats(i);
+                    break;
+
+                case 5:
+                    System.out.print("Tirs Triples Anotats: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setTirsTriplesAnotats(i);
+                    break;
+
+                case 6:
+                    System.out.print("Tirs Triples Tirats: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setTirsTriplesTirats(i);
+                    break;
+
+                case 7:
+                    System.out.print("Tirs Lliures Anotats: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setTirsLliuresAnotats(i);
+                    break;
+
+                case 8:
+                    System.out.print("Tirs Lliures Tirats: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setTirsLliuresTirats(i);
+                    break;
+
+                case 9:
+                    System.out.println("Rebots Ofensius: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setRebotsOfensius(i);
+                    break;
+
+                case 10:
+                    System.out.print("Rebots Defensius: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setRebotsDefensius(i);
+                    break;
+
+                case 11:
+                    System.out.print("Assistencies: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setAssistencies(i);
+                    break;
+
+                case 12:
+                    System.out.print("Robades: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setRobades(i);
+                    break;
+
+                case 13:
+                    System.out.println("Bloqueigs: ");
+                    i = scan.nextInt();
+                    scan.nextLine();
+                    ej.setBloqueigs(i);
+                    break;
+                default:
+                    System.out.println("Ha de ser un numero entre el 0 i el 13.");
+            }
+        } while (opcio != 0);
+
+        ejDAO.update(ej);
+        Vista.mostrarEstadistiquesActual(ej);
+
+    }
 
 }

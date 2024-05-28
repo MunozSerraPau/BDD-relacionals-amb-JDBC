@@ -90,4 +90,41 @@ public class Vista {
                 "\nTotal de Triples Anotats: " + jugHisto.getTotalTriplesAnotats());
     }
 
+    public static void mostrarEstadistiquesActual(Estadistiques_jugadors ej) {
+        System.out.println("\nDades del jugador:");
+        System.out.println("Jugador ID: " + ej.getJugadorId());
+        System.out.println("Equip ID: " + ej.getEquipId());
+        System.out.println("Partit ID: " + ej.getPartitId());
+        System.out.println("Minuts jugats: " + ej.getMinutsJugats());
+        System.out.println("Punts: " + ej.getPunts());
+        System.out.println("Tirs anotats: " + ej.getTirsAnotats());
+        System.out.println("Tirs tirats: " + ej.getTirsTirats());
+        System.out.println("Tirs triples anotats: " + ej.getTirsTriplesAnotats());
+        System.out.println("Tirs triples tirats: " + ej.getTirsTriplesTirats());
+        System.out.println("Tirs lliures anotats: " + ej.getTirsLliuresAnotats());
+        System.out.println("Tirs lliures tirats: " + ej.getTirsLliuresTirats());
+        System.out.println("Rebots ofensius: " + ej.getRebotsOfensius());
+        System.out.println("Rebots defensius: " + ej.getRebotsDefensius());
+        System.out.println("Assistencies: " + ej.getAssistencies());
+        System.out.println("Robades: " + ej.getRobades());
+        System.out.println("Bloqueigs: " + ej.getBloqueigs() + "\n");
+    }
+    public static void menuEstadistiques() {
+        System.out.println("Selecciona una opció:");
+        System.out.println("1. Estableix minutsJugats");
+        System.out.println("2. Estableix punts");
+        System.out.println("3. Estableix tirsAnotats");
+        System.out.println("4. Estableix tirsTirats");
+        System.out.println("5. Estableix tirsTriplesAnotats");
+        System.out.println("6. Estableix tirsTriplesTirats");
+        System.out.println("7. Estableix tirsLliuresAnotats");
+        System.out.println("8. Estableix tirsLliuresTirats");
+        System.out.println("9. Estableix rebotsOfensius");
+        System.out.println("10. Estableix rebotsDefensius");
+        System.out.println("11. Estableix assistencies");
+        System.out.println("12. Estableix robades");
+        System.out.println("13. Estableix bloqueigs");
+        System.out.println("0. Acabar");
+    }
+
 }

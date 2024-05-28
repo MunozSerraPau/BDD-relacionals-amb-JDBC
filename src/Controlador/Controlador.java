@@ -13,7 +13,6 @@ public class Controlador {
     public static EquipsDAO equipDAO = new EquipsDAO();
     public static JugadoresDAO jugadorDAO = new JugadoresDAO();
     public static Jugadors_historicsDAO jugadorHistoricDAO = new Jugadors_historicsDAO();
-
     public static Estadistiques_jugadorsDAO EstadisticaJugador = new Estadistiques_jugadorsDAO();
 
 
@@ -84,7 +83,6 @@ public class Controlador {
                         if (jug != null) {
                             Vista.mostrarJugadorActualitzat(jug);
                         }
-
                     } catch (Exception e) {
                         System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
                     }
@@ -103,6 +101,12 @@ public class Controlador {
                     
                 case "7":
                     System.out.println("Exercici 7:");
+
+                    try {
+                        EstadisticaJugador.exercici7();
+                    } catch (Exception e) {
+                        System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
+                    }
                     break;
 
                 case "8":

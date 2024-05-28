@@ -6,7 +6,7 @@ public class Estadistiques_jugadors {
     private int jugadorId;
     private int equipId;
     private int partitId;
-    private double minutsJugats;
+    private float minutsJugats;
     private float punts;
     private int tirsAnotats;
     private int tirsTirats;
@@ -22,7 +22,7 @@ public class Estadistiques_jugadors {
 
 
     // CONSTRUCTOR
-    public Estadistiques_jugadors (int jugadorId, int equipId, int partitId, double minutsJugats, int punts, int tirsAnotats, int tirsTirats, int tirsTriplesAnotats, int tirsTriplesTirats, int tirsLliuresAnotats, int tirsLliuresTirats, int rebotsOfensius, int rebotsDefensius, int assistencies, int robades, int bloqueigs) {
+    public Estadistiques_jugadors (int jugadorId, int equipId, int partitId, float minutsJugats, int punts, int tirsAnotats, int tirsTirats, int tirsTriplesAnotats, int tirsTriplesTirats, int tirsLliuresAnotats, int tirsLliuresTirats, int rebotsOfensius, int rebotsDefensius, int assistencies, int robades, int bloqueigs) {
         this.jugadorId = jugadorId;
         this.equipId = equipId;
         this.partitId = partitId;
@@ -52,7 +52,7 @@ public class Estadistiques_jugadors {
     public int getJugadorId() { return jugadorId; }
     public int getEquipId() { return equipId; }
     public int getPartitId() { return partitId; }
-    public double getMinutsJugats() { return minutsJugats; }
+    public float getMinutsJugats() { return minutsJugats; }
     public float getPunts() { return punts; }
     public int getTirsAnotats() { return tirsAnotats; }
     public int getTirsTirats() { return tirsTirats; }
@@ -71,7 +71,7 @@ public class Estadistiques_jugadors {
     public void setJugadorId(int jugadorId) { this.jugadorId = jugadorId; }
     public void setEquipId(int equipId) { this.equipId = equipId; }
     public void setPartitId(int partitId) { this.partitId = partitId; }
-    public void setMinutsJugats(double minutsJugats) { this.minutsJugats = minutsJugats; }
+    public void setMinutsJugats(float minutsJugats) { this.minutsJugats = minutsJugats; }
     public void setPunts(float punts) { this.punts = punts; }
     public void setTirsAnotats(int tirsAnotats) { this.tirsAnotats = tirsAnotats; }
     public void setTirsTirats(int tirsTirats) { this.tirsTirats = tirsTirats; }

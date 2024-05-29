@@ -1,12 +1,14 @@
-# Projecte BDD relaccionals amb JDBC 
+# Projecte BDD relaccionals amb JDBC
+
 Pau Muñoz Serra
 
 ## Introducció
+
 Aquest projecte és una aplicació de Java que utilitza el patró de disseny Model-Vista-Controlador (MVC) per interactuar amb una base de dades. El programa permet realitzar diferentes operacions CRUD (Crear, Llegir, Actualitzar, Eliminar) sobre una taula segons la classe amb la qual interactuem, així com inserir registres de forma aleatòria.
 
 ### Enllaç GitHub
 
-....
+https://github.com/MunozSerraPau/BDD-relacionals-amb-JDBC
 
 ### Estructura del projecte
 

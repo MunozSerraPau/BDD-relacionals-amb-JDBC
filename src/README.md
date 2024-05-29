@@ -18,6 +18,7 @@ Aquest projecte és una aplicació de Java que utilitza el patró de disseny Mod
 - ***Utils:*** conté les classes que s'encarreguen de fer tasques auxiliars.
   - RandomJugadorGenerator.java: classe que s'encarrega de generar jugadors de manera aleatòria.
 
+
 ### Funcionalitats
 
 - ***CRUD:*** Són les diferents acciones que pots fer sobre una base de dades.

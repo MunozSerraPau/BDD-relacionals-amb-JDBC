@@ -23,6 +23,7 @@ public class Vista {
         System.out.println("7.- Modificar les estadístiques d’un jugador");
         System.out.println("8.- Retirar (Eliminar) un jugador.");
         System.out.println("9.- Canviar nom franquícia d’un equip");
+        System.out.println("10.- Crear registres i taules");
         System.out.println("O - Sortir del programa");
         System.out.println("---------------------------------");
         System.out.print("Quina opció vols (escriu només el numero)? ");

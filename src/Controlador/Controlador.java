@@ -1,10 +1,12 @@
 package Controlador;
 
+import GenerarDades.GenerarRegistresAleatoris;
 import Model.*;
 import Vista.*;
 
 import java.security.PublicKey;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,7 +27,7 @@ public class Controlador {
     /**
      * Mostrem el menu dels exercicis i cridem a la funció que s'ocupa de l'exercici.
      */
-    public static void Exercicis() {
+    public static void Exercicis() throws SQLException {
         String opcioMneu;
 
         do {
@@ -137,6 +139,10 @@ public class Controlador {
                     } catch (Exception e) {
                         System.out.println("ERRO!! "+ e.getClass() + " | " + e.getMessage());
                     }
+                    break;
+                case "10":
+                    System.out.println("Creant estructura i afegin tots els registres pot tardar uns minuts, gracies per la seva espera.");
+                    GenerarRegistresAleatoris.generarTot();
                     break;
 
                 case "0":

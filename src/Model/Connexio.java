@@ -11,6 +11,10 @@ public class Connexio {
     public static Connection conectarBD() {
         String url = "jdbc:mysql://192.168.14.8:3306/NBA";
         // String url = "jdbc:mysql://192.168.14.13:3306/NBA";
+
+        // String url = "jdbc:mysql://192.168.14.8:3306/NBA2";
+        // String url = "jdbc:mysql://192.168.14.13:3306/NBA2";
+
         String user = "perepi";
         String contra = "pastanaga";
 

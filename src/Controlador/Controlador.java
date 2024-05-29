@@ -10,13 +10,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Controlador {
+
+    /**
+     * CREEM TOTES LES VARIABLES NECESSARIES
+     */
     public static EquipsDAO equipDAO = new EquipsDAO();
     public static JugadoresDAO jugadorDAO = new JugadoresDAO();
     public static Jugadors_historicsDAO jugadorHistoricDAO = new Jugadors_historicsDAO();
     public static Estadistiques_jugadorsDAO EstadisticaJugador = new Estadistiques_jugadorsDAO();
 
-
     public static Scanner scan = new Scanner(System.in);
+
+
+    /**
+     * Mostrem el menu dels exercicis i cridem a la funció que s'ocupa de l'exercici.
+     */
     public static void Exercicis() {
         String opcioMneu;
 

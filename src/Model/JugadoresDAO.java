@@ -132,7 +132,7 @@ public class JugadoresDAO implements DAO<Jugadres> {
         List<Jugadres> players = new ArrayList<>();
         EquipsDAO e = new EquipsDAO();
 
-        System.out.print("Escriu el nom del equip: ");
+        System.out.print("Escriu el nom del equip(Los Angeles Lakers): ");
         nomEquip = scan.nextLine().trim();
         idEquip = e.trovarEquipId(nomEquip);
 
@@ -201,7 +201,7 @@ public class JugadoresDAO implements DAO<Jugadres> {
         }
 
 
-        System.out.print("Escriu el nom de l'equip: ");
+        System.out.print("Escriu el nom de l'equip(Los Angeles Lakers): ");
         nomEquip = scan.nextLine().trim();
 
         idJug = trovarJugadorId(nomJug);
@@ -217,14 +217,14 @@ public class JugadoresDAO implements DAO<Jugadres> {
             Vista.missatgeJugadorTrobat();
             do {
                 resposta = scan.nextLine().toUpperCase().trim();
-                if (resposta.equals("S")) {
+                if (resposta.equals("SI")) {
                     jugador = j.read(idJug);
                     jugador.setEquipId(idEquip);
                     j.update(jugador);
                 } else {
                     System.out.println("OK!");
                 }
-            } while (resposta.equals("S") || resposta.equals("N"));
+            } while (!(resposta.equals("SI") || resposta.equals("NO")));
 
         }
 
@@ -288,7 +288,7 @@ public class JugadoresDAO implements DAO<Jugadres> {
         String nomJug, nomEquip;
         Long idJug, idEquip;
 
-        System.out.print("Nom del jugador: ");
+        System.out.print("Nom del jugador(Chris Paul): ");
         nomJug = scan.nextLine().trim();
         try {
             idJug = trovarJugadorId(nomJug);
@@ -297,7 +297,7 @@ public class JugadoresDAO implements DAO<Jugadres> {
             return null;
         }
 
-        System.out.print("Nom del equip on vols que vagi: ");
+        System.out.print("Nom del equip on vols que vagi(Philadelphia 76ers): ");
         nomEquip = scan.nextLine().trim();
         try {
             idEquip = e.trovarEquipId(nomEquip);

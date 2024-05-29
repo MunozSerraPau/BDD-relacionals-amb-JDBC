@@ -64,6 +64,12 @@ public class EquipsDAO implements DAO<Equips> {
         return false;
     }
 
+    /**
+     * Llegim un equip i ens el guardem amb una id de l'equip.
+     * @param id_equip La id del equip que volem guardar.
+     * @return Retornem l'equip amb totes les dades obtingudes.
+     * @throws SQLException Tirem una exception si peta amb algun punt del SQL.
+     */
     @Override
     public Equips read(Long id_equip) throws SQLException {
         Equips e = new Equips(id_equip.intValue(), "", "", "", "", 0, 0);
@@ -88,6 +94,11 @@ public class EquipsDAO implements DAO<Equips> {
         return e;
     }
 
+    /**
+     * Li passem el nom d'un equip i podrem obtenir el seu id.
+     * @param n El nom de l'equip del qual volem obtenir el seu id.
+     * @return Retornem la id del Equip que li hem passat.
+     */
     public Long trovarEquipId (String n) {
         Long equipId = null;
 
@@ -114,6 +125,11 @@ public class EquipsDAO implements DAO<Equips> {
         return equipId;
     }
 
+    /**
+     * Funció per canviar la franquícia de l'equip.
+     * @return Retornem un equip amb el nom actualitzat.
+     * @throws SQLException Per si en algun moment peta amb las funcións de SQL.
+     */
     public Equips canviarNom() throws SQLException {
         String s, nomCanvi;
         Long idEquip;

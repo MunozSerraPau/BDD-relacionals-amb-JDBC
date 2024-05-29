@@ -40,6 +40,11 @@ public class PartitsDAO implements DAO<Partits> {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<Partits> all() throws SQLException {
         String nomEquip;

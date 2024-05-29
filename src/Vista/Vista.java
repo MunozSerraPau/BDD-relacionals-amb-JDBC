@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Vista {
+
+    /**
+     * Mostra el menu d'opcións dels diferents exerciser.
+     */
     public static void mostrarMenuOpcions() {
         System.out.println("MENÚ DE EXERCICIS");
         System.out.println("---------------------------------");
@@ -23,12 +27,22 @@ public class Vista {
         System.out.println("---------------------------------");
         System.out.print("Quina opció vols (escriu només el numero)? ");
     }
+
+    /**
+     * Mostra una llista de jugadors
+     * @param llistaJugadors La llista de jugadors que volem mostrar.
+     */
     public static void mostrarJugadors(List<Jugadres> llistaJugadors) {
         for (Jugadres j : llistaJugadors) {
             System.out.println("Jugador: " + j.getNom() + " " + j.getCognom());
         }
         llistaJugadors.clear();
     }
+
+    /**
+     * Mostra una llista de partits
+     * @param llistaPartits La llista dels partits que volem mostrar
+     */
     public static void mostrarPartits(List<Partits> llistaPartits) {
         int contador = 1;
         for (int i = 0; i < llistaPartits.size(); i++) {
@@ -41,6 +55,11 @@ public class Vista {
             }
         }
     }
+
+    /**
+     * Mostrem una llista d'estadístiques.
+     * @param llistaEstadistiques La llista amb les estadístiques.
+     */
     public static void mostrarEstadisticas(List<Estadistiques_jugadors> llistaEstadistiques) {
         for (Estadistiques_jugadors e : llistaEstadistiques) {
             System.out.println("Estadístiques / Partit: \n" +
@@ -51,14 +70,28 @@ public class Vista {
         }
         llistaEstadistiques.clear();
     }
+
+    /**
+     * Missatge conforme hem trobat el jugador
+     */
     public static void missatgeJugadorTrobat() {
         System.out.println("\nHi ha un jugador amb aquest nom, ja existeix aquest jugador!");
-        System.out.println("Vols que canvi al equip que has introduït? (S = Si | N = No)\n");
+        System.out.println("Vols que canvi al equip que has introduït? (Si | No)\n");
     }
+
+    /**
+     * Missatge conforme no hem trobat el jugador.
+     */
     public static void missatgeJugadorNoTrobat() {
         System.out.println("\nNo s'ha trobat cap jugador amb aquest nom!");
         System.out.println("Ara crearem el jugador, amb el nom que has introduït i al equip que has seleccionat.\n");
     }
+
+    /**
+     * Mostra algunes dades del nou jugador que hem afegit.
+     * @param jugador Les dades del jugador que hem creat
+     * @param i El numero de jugadors creats
+     */
     public static void mostrarJugadorNou(Jugadres jugador, int i) {
 
         System.out.println("\nS'han crear un total de " + i + " jugadors. Aquí les seves dades.");
@@ -68,6 +101,11 @@ public class Vista {
                 "\nDorsal: " + jugador.getDorsal() +
                 "\nPosició: " + jugador.getPosicio());
     }
+
+    /**
+     * Mostrem algunes dades d'un jugador un cop actualitzat.
+     * @param jugador El jugador amb les dades actualitzades.
+     */
     public static void mostrarJugadorActualitzat(Jugadres jugador) {
 
         System.out.println("\nS'ha actualitzat un jugador. Aquí les seves dades.");
@@ -78,6 +116,11 @@ public class Vista {
                 "\nPosició: " + jugador.getPosicio() +
                 "\nEquipId: " + jugador.getEquipId());
     }
+
+    /**
+     * Mostrem el registre dle jugador Historic que hem afegit.
+     * @param jugHisto Les dades del jugador historic que mostrarem.
+     */
     public static void mostrarJugadorHistoric(Jugadors_historics jugHisto) {
         System.out.println("\nS'ha actualitzat un jugador. Aquí les seves dades.");
         System.out.println("Nom: " + jugHisto.getNom() + " " + jugHisto.getCognom() +
@@ -90,6 +133,10 @@ public class Vista {
                 "\nTotal de Triples Anotats: " + jugHisto.getTotalTriplesAnotats());
     }
 
+    /**
+     * Mostrem les estadístiques d'un jugador
+     * @param ej Les estadístiques del jugador.
+     */
     public static void mostrarEstadistiquesActual(Estadistiques_jugadors ej) {
         System.out.println("\nDades del jugador:");
         System.out.println("Jugador ID: " + ej.getJugadorId());
@@ -109,6 +156,10 @@ public class Vista {
         System.out.println("Robades: " + ej.getRobades());
         System.out.println("Bloqueigs: " + ej.getBloqueigs() + "\n");
     }
+
+    /**
+     * Mostrem el menu per canviar estadístiques.
+     */
     public static void menuEstadistiques() {
         System.out.println("Selecciona una opció:");
         System.out.println("1. Estableix minutsJugats");

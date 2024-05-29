@@ -24,6 +24,12 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
         return null;
     }
 
+    /**
+     * Funció per actualitzar les estadístiques d'un jugador en un partit concret.
+     * @param estadistiquesJugadors Li passem les estadístiques amb els canvis.
+     * @return Retornem true conforme s'ha realitzat la funció.
+     * @throws SQLException Tira exception per si en algun moment peta amb el UPDATE.
+     */
     @Override
     public boolean update(Estadistiques_jugadors estadistiquesJugadors) throws SQLException {
         Connection connection = Connexio.conectarBD();
@@ -58,7 +64,7 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
             System.out.println("NO s'ha actualitzat.");
         }
 
-        return false;
+        return true;
     }
 
     @Override
@@ -76,6 +82,11 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
         return 0;
     }
 
+    /**
+     * Llista les estadístiques d'un jugador.
+     * @return Retorna una llista amb les estadístiques del jugador.
+     * @throws Exception Per si en algun moment peta amb el select
+     */
     @Override
     public List<Estadistiques_jugadors> all() throws Exception {
         String nomJug;
@@ -88,6 +99,8 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
         idJugador = j.trovarJugadorId(nomJug);
 
         Connection connection = Connexio.conectarBD();
+
+        // En aquest cas calculem la mitjana d'un jugador de les seves estadístiques.
 
         PreparedStatement statement = connection.prepareStatement("SELECT SUM(punts) / COUNT(jugador_id) AS p, SUM(assistencies) / COUNT(jugador_id) AS a, SUM(robades) / COUNT(jugador_id) AS r, SUM(bloqueigs) / COUNT(jugador_id) AS b " +
                 "FROM estadistiques_jugadors " +
@@ -107,6 +120,11 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
         return estadisticaJugador;
     }   // ECERCICI 2
 
+    /**
+     * El que fa és llegir un arxiu extern amb dades per actualitzar un o diferents registres, primer llegim l'arxiu
+     * creem una array, ja que està separat per comes i posterior li assignem les dades que hem obtingut del fitxer al
+     * registre segons la id del jugador i la id del partit.
+     */
     public void exercici6() {
         String rutaArxiu = "src/registres.txt";
         String line;
@@ -124,9 +142,12 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
             // Llegir les dades del fitxer
             BufferedReader llegir = new BufferedReader(new FileReader(rutaArxiu));
 
+            // Agafem tota la línia, i que es repeteixi fins que la line sigui null (que no trobi res)
             while ((line = llegir.readLine())!= null) {
 
+                // CREEM LA ARRAY PER LES ","
                 String[] registre = line.split(",");
+                // ARA DEPENEN DEL QUE LI TOQUI OBTENIR LI ASSIGNEM UN PARAMETER DE L'ARRAY.
                 statement.setFloat(1, Float.parseFloat(registre[3]));       // minuts_jugats
                 statement.setInt(2, Integer.parseInt(registre[4]));         // punts
                 statement.setInt(3, Integer.parseInt(registre[5]));         // tirs_anotats
@@ -143,6 +164,7 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
                 statement.setInt(14, Integer.parseInt(registre[0]));        // jugador_id
                 statement.setInt(15, Integer.parseInt(registre[2]));        //partit_id
 
+                // I AQUÍ EXECUTEM LA COMANDA
                 statement.executeUpdate();
 
                 rs++;
@@ -162,6 +184,11 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
 
     }
 
+    /**
+     * Funció per modificar algun valor de les estadístiques d'un partit d'un jugador concret, ens dona un menu i podem
+     * modificar una dada concreta.
+     * @throws SQLException Per si peta en algun moment al cridar funcions de SQL
+     */
     public void exercici7() throws SQLException {
         Estadistiques_jugadorsDAO ejDAO = new Estadistiques_jugadorsDAO();
         JugadoresDAO j = new JugadoresDAO();
@@ -184,6 +211,7 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
 
         Vista.mostrarEstadistiquesActual(ej);
 
+        // MENU PER PODER EDITAR UN CAP CONCRET
         do {
             Vista.menuEstadistiques();
             System.out.print("Escull una opció (0 per acabar de editar): ");
@@ -290,11 +318,19 @@ public class Estadistiques_jugadorsDAO implements DAO<Estadistiques_jugadors> {
             }
         } while (opcio != 0);
 
+        // UN COP JA LI HEM PASSAT LES ACTUALITZACIONS DE DADES CRIDEM LA FUNCIÓ QUE FA EL UPDATE AMB LES NOVES DADES
         ejDAO.update(ej);
         Vista.mostrarEstadistiquesActual(ej);
 
     }
 
+    /**
+     * Obtenir les estadístiques d'un partit i jugador concret.
+     * @param idJugador El id del jugador que volem obtenir.
+     * @param idPartit El id del partit que volem obtenir.
+     * @return Passem un registre amb les estadístiques del jugador.
+     * @throws SQLException Per si peta en algun moment.
+     */
     public Estadistiques_jugadors obtenirEstadistiques(Long idJugador, Long idPartit) throws SQLException {
         Estadistiques_jugadors ej = new Estadistiques_jugadors(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 

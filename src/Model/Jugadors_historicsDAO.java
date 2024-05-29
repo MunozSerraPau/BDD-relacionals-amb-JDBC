@@ -11,6 +11,13 @@ import java.util.Scanner;
 
 public class Jugadors_historicsDAO implements DAO<Jugadors_historics>{
     public static Scanner scan = new Scanner(System.in);
+
+    /**
+     * Creem un jugador historic.
+     * @param jugHis Totes les dades que hem de guardar del jugador.
+     * @return Retorna true conforma s'ha realitzat el CREATE.
+     * @throws Exception Per si peta en algun punt de la consulta.
+     */
     @Override
     public boolean create(Jugadors_historics jugHis) throws Exception {
 
@@ -85,11 +92,18 @@ public class Jugadors_historicsDAO implements DAO<Jugadors_historics>{
         return List.of();
     }
 
+    /**
+     * Funció per obtenir totes les dades necessaries per guardar-ho a la taula Jugadors_Historics.
+     * @param idJugadorHistoric El id del jugador que volem obtenir la dada.
+     * @return Retorna un registre de Jugadors_historics amb totes les dades.
+     * @throws SQLException Per si peta en algun moment.
+     */
     public Jugadors_historics obtenirInformacio (Long idJugadorHistoric) throws SQLException {
         Jugadors_historics jh = null;
 
         Connection connection = Connexio.conectarBD();
 
+        // UTILITZEM UN INNER JOIN PER AJUNTAR DOS TAULES.
         PreparedStatement statement = connection.prepareStatement("SELECT j.jugador_id, j.nom, j.cognom, j.dorsal, j.posicio, SUM(ej.minuts_jugats) AS mj, SUM(ej.punts) AS p, SUM(ej.tirs_anotats) AS ta, SUM(ej.tirs_tirats) AS tt, SUM(ej.tirs_triples_anotats) AS tta, SUM(ej.tirs_triples_tirats) AS ttt, SUM(ej.tirs_lliures_anotats) AS tla, SUM(ej.tirs_lliures_tirats) AS tlt, SUM(ej.rebots_ofensius) AS ro, SUM(ej.rebots_defensius) AS rd, SUM(ej.assistencies) AS a, SUM(ej.robades) AS r, SUM(bloqueigs) b" +
                 " FROM jugadors j" +
                 " INNER JOIN estadistiques_jugadors ej ON j.jugador_id = ej.jugador_id" +
@@ -123,6 +137,10 @@ public class Jugadors_historicsDAO implements DAO<Jugadors_historics>{
         return jh;
     }
 
+    /**
+     * Funció per passar un jugador amb les seves dades a una taula de Jugadors_Historics.
+     * @throws Exception Per si peta en alguna de les funcións cridades.
+     */
     public void exercici8() throws Exception {
         Jugadors_historics jugHis;
         JugadoresDAO jug = new JugadoresDAO();
@@ -137,6 +155,7 @@ public class Jugadors_historicsDAO implements DAO<Jugadors_historics>{
         jugHis = obtenirInformacio(idJugHis);
         create(jugHis);
 
+        // AQUÍ ELIMINEM EL REGISTRE DE JUGADORS
         // jug.delete(idJugHis);  ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡MIRAR QUE S'HA DE FER!!!!!!!!!!!!!!
 
     }

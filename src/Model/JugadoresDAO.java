@@ -273,7 +273,7 @@ public class JugadoresDAO implements DAO<Jugadres> {
     } //EXERCICI 4
 
     /**
-     * Funció epr obtenir tots els valors de la taula de Jugadors per crear-lo.
+     * Funció per obtenir tots els valors de la taula de Jugadors per crear-lo.
      * @param nom El nom del jugador.
      * @param c El Cognom del jugador.
      * @param id La id del Equip on anirà.

@@ -15,8 +15,8 @@ Aquest projecte és una aplicació de Java que utilitza el patró de disseny Mod
   - Vista.java: És la classe que s'encarrega de mostrar la informació, a més de passar-li alguna classe amb informació per imprimir-ho.
 - ***Controlador:*** Conté la classe que s'encarrega anar cridant les funcións per realitzar els exercicis i mostrar els textos.
   - Controlador.java: Classe que s'encarrega de cridar a les funcións del CRUD sobre la base de dades per poder actuar sobre la base de dades, a més de cridar la Vista per poder veure-ho per pantalla.
-- ***Utils:*** conté les classes que s'encarreguen de fer tasques auxiliars.
-  - RandomJugadorGenerator.java: classe que s'encarrega de generar jugadors de manera aleatòria.
+- ***Utils:*** conté les classes que s'encarreguen de fer tasques extras en aquest cas afegir registres aleatoris.
+  - GenerarDades.java: classe que s'encarrega de generar jugadors/equips/estadístiques/partits de manera aleatòria.
 
 
 ### Funcionalitats
@@ -38,15 +38,16 @@ El programa utilitza el patró DAO (Data Access Object) per a interactuar amb la
 
 ### Clases y métodos importantes
 
-- ***JugadorDAO.java:***
-  - insertJugador(Jugador jugador): mètode que insereix un nou jugador en la base de dades.
-  - getJugadores(): mètode que obté la llista de tots els jugadors.
-  - getJugador(*int aneu): mètode que busca un jugador específic pel seu ID.
-  - updateJugador(Jugador jugador): mètode que actualitza la informació d'un jugador existent.
-  - deleteJugador(*int aneu): mètode que elimina un jugador de la base de dades.
-- ***RandomJugadorGenerator.java:***
-  - generateJugador(): mètode que genera un jugador de manera aleatòria.
-  - 
-## Conclusión
-
-Aquest projecte és un programa de Java que utilitza el patró de disseny MVC i el patró DAO per a interactuar amb una base de dades. El programa permet realitzar operacions CRUD sobre registres a la base de dades, a més d'organitzar-me millor que la UF anterior i he après dels errors de temps, controlant-lo millor i donant un millor resultat.
+- ***JugadorDAO.java: (Diferents mètodes de Jugadors, però s'aplica a diferents classes)***
+  - **create(Jugadres jugadres):** Mètode que crea/insereix un jugador amb les dades d'un jugador que li passem, li passem un jugador amb les dades.
+  - **public Jugadres read(Long id_jugador):** Mètode obté tota la informació d'un jugador en concret, passant-li la id del jugador que volem obtenir la informació i retornar-nos un jugador amb les dades que hem obtingut.
+  - **update(Jugadres jugadres):** Mètode que actualitza les dades d'un jugador amb unes de noves, passant-li un jugador amb les dades noves.
+  - **delete(Long id_Jugador):** Mètode que elimina un registre d'un jugador.
+  - **public List<Jugadres> all():** Mètode que crea una llista amb tots els jugadors d'un equip en concret.
+  - **public Long trovarJugadorId(String n):** Mètode per obtenir l'Id d'un jugador contret gràcies al seu nom, passant-li el nom complet del jugador.
+  - **public Jugadres infoJugador(String nom, String c, long id):** Mètode per obtenir tots els valors de la taula de Jugadors per crear-lo, li passem unes dades que ja les demanem abans entre elles el nom, cognom i la id del equip on van.
+- ***GenerarRegistresAleatoris.java:***
+  - **generarJugadors():** Mètode que genera jugadors de manera aleatòria.
+  - **generarEquips():** Mètode que genera equips de manera aleatòria.
+  - **generarEstadistiques():** Mètode que genera estadístiques de manera aleatòria.
+  - **generarPartits():** Mètode que genera partits de manera aleatòria.

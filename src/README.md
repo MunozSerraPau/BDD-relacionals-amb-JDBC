@@ -4,6 +4,10 @@ Pau Muñoz Serra
 ## Introducció
 Aquest projecte és una aplicació de Java que utilitza el patró de disseny Model-Vista-Controlador (MVC) per interactuar amb una base de dades. El programa permet realitzar diferentes operacions CRUD (Crear, Llegir, Actualitzar, Eliminar) sobre una taula segons la classe amb la qual interactuem, així com inserir registres de forma aleatòria.
 
+### Enllaç GitHub
+
+....
+
 ### Estructura del projecte
 
 - ***Model:*** conté les classes que realitzen totes les funcións i executen programari "pesat", el qual fan totes les cerques, afegir dades, eliminar... 
@@ -15,8 +19,8 @@ Aquest projecte és una aplicació de Java que utilitza el patró de disseny Mod
   - Vista.java: És la classe que s'encarrega de mostrar la informació, a més de passar-li alguna classe amb informació per imprimir-ho.
 - ***Controlador:*** Conté la classe que s'encarrega anar cridant les funcións per realitzar els exercicis i mostrar els textos.
   - Controlador.java: Classe que s'encarrega de cridar a les funcións del CRUD sobre la base de dades per poder actuar sobre la base de dades, a més de cridar la Vista per poder veure-ho per pantalla.
-- ***Utils:*** conté les classes que s'encarreguen de fer tasques extras en aquest cas afegir registres aleatoris.
-  - GenerarDades.java: classe que s'encarrega de generar jugadors/equips/estadístiques/partits de manera aleatòria.
+- ***GenerarDades:*** conté les classes que s'encarreguen de fer tasques extras en aquest cas afegir registres aleatoris.
+  - GenerarRegistresAleatoris.java: classe que s'encarrega de generar jugadors/equips/estadístiques/partits de manera aleatòria.
 
 
 ### Funcionalitats

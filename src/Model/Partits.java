@@ -19,8 +19,6 @@ public class Partits {
     }
 
     // CONSTRUCTOR 2
-
-
     public Partits(int equipId, String dataPartit) {
         this.equipId = equipId;
         this.dataPartit = dataPartit;

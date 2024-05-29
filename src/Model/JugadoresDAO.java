@@ -11,6 +11,12 @@ import java.util.Scanner;
 public class JugadoresDAO implements DAO<Jugadres> {
     public static Scanner scan = new Scanner(System.in);
 
+    /**
+     * Funció per crear un jugador amb les dades d'un jugador que li passem
+     * @param jugadres El jugador amb les dades.
+     * @return Retorna true conforme s'ha creat.
+     * @throws Exception Per si pera en algun punt del SQL
+     */
     @Override
     public boolean create(Jugadres jugadres) throws Exception {
         try {
@@ -41,6 +47,12 @@ public class JugadoresDAO implements DAO<Jugadres> {
         return true;
     }
 
+    /**
+     * Agafa tota l'informació d'un jugador en concret.
+     * @param id_jugador La id del jugador que volem obtenir la informació.
+     * @return Un jugador amb les dades que hem obtingut
+     * @throws SQLException Per si peta en fer la sentència.
+     */
     @Override
     public Jugadres read(Long id_jugador) throws SQLException {
         Jugadres j = new Jugadres(id_jugador.intValue(), "", "", "", 0f, 0f, "", "", 0);
@@ -67,6 +79,12 @@ public class JugadoresDAO implements DAO<Jugadres> {
         return j;
     }
 
+    /**
+     * Actualitza les dades d'un jugador amb unes de noves.
+     * @param jugadres El jugador amb les dades noves.
+     * @return Retorna true conforme s'ha realitzat l'UPDATE.
+     * @throws Exception Per si peta en el SQL.
+     */
     @Override
     public boolean update(Jugadres jugadres) throws Exception {
 
@@ -95,6 +113,12 @@ public class JugadoresDAO implements DAO<Jugadres> {
         return false;
     }
 
+    /**
+     * Elimina un registre d'un jugador.
+     * @param id_Jugador La id del jugador que volem eliminar.
+     * @return Retorna true conforme s'ha realitzar el delete
+     * @throws SQLException Per si peta en fer el DELETE
+     */
     @Override
     public boolean delete(Long id_Jugador) throws SQLException {
 
@@ -125,6 +149,11 @@ public class JugadoresDAO implements DAO<Jugadres> {
         return 0;
     }
 
+    /**
+     * Crea una llista amb tots els jugadors, d'un equip en concret que li passarem.
+     * @return Una llista dels jugadors d'un equip concret.
+     * @throws Exception Per si peta en alguna de les funcions de SQL.
+     */
     @Override
     public List<Jugadres> all() throws Exception {
         String nomEquip;
@@ -152,6 +181,11 @@ public class JugadoresDAO implements DAO<Jugadres> {
         return players;
     }   // EXERCICI 1
 
+    /**
+     * Funció per obtenir l'Id d'un jugador contret amb el seu nom.
+     * @param n El nom complet del jugador
+     * @return Un Long amb la id del jugador que volem.
+     */
     public Long trovarJugadorId(String n) {
         Long jugadorID = null;
 
@@ -179,6 +213,12 @@ public class JugadoresDAO implements DAO<Jugadres> {
         return jugadorID;
     }
 
+    /**
+     * Funció per afegir un jugador i un equip, si no existeix el pots crear o si existeix tens la possibilitat de
+     * canviar-lo a l'equip que hem passat.
+     * @return Un jugador amb tota la informació nova del jugador tant si el creem com si el canviem d'equip.
+     * @throws Exception Per si peta a l'introduir un valor/caracter erroni.
+     */
     public Jugadres exercici4() throws Exception {
         String nomJug, nomEquip, nom = "", cognom = "", resposta;
         String[] arrayNom;
@@ -232,6 +272,13 @@ public class JugadoresDAO implements DAO<Jugadres> {
         return null;
     } //EXERCICI 4
 
+    /**
+     * Funció epr obtenir tots els valors de la taula de Jugadors per crear-lo.
+     * @param nom El nom del jugador.
+     * @param c El Cognom del jugador.
+     * @param id La id del Equip on anirà.
+     * @return Un jugador amb totes les dades.
+     */
     public Jugadres infoJugador(String nom, String c, long id) {
         String[] posi = {"Center", "Center-Forward", "Forward", "Forward-Center", "Forward-Guard", "Guard", "Guard-Forward"};
         boolean b = false;
@@ -281,6 +328,11 @@ public class JugadoresDAO implements DAO<Jugadres> {
         return jug;
     }
 
+    /**
+     * Funció per canviar un jugador a un equip diferent.
+     * @return Un jugador amb la id del equip actualitzat a un nou que li passarem
+     * @throws Exception Per si peta en alguna de les funcións SQL.
+     */
     public Jugadres canviDeEquip() throws Exception {
         JugadoresDAO j = new JugadoresDAO();
         EquipsDAO e = new EquipsDAO();

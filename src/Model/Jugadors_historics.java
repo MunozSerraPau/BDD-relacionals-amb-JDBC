@@ -23,8 +23,6 @@ public class Jugadors_historics {
 
 
     // CONSTRUCTOR
-
-
     public Jugadors_historics(int jugador_Id, String nom, String cognom, String dorsal, String posicio, float minutsTotals, int puntsTotals, int totalTirsAnotats, int totalTirsTirats, int totalTriplesAnotats, int totalTriplesTirats, int totalLliuresAnotats, int totalLliuresTirars, int totalRebotsOfensius, int totalRebotsDefensius, int totalAssistencies, int totalRobades, int totalBloqueigs) {
         this.jugador_Id = jugador_Id;
         this.nom = nom;

@@ -21,7 +21,7 @@ public class  Estadistiques_jugadors {
     private float bloqueigs;
 
 
-    // CONSTRUCTOR
+    // CONSTRUCTOR 1
     public Estadistiques_jugadors (int jugadorId, int equipId, int partitId, float minutsJugats, int punts, int tirsAnotats, int tirsTirats, int tirsTriplesAnotats, int tirsTriplesTirats, int tirsLliuresAnotats, int tirsLliuresTirats, int rebotsOfensius, int rebotsDefensius, int assistencies, int robades, int bloqueigs) {
         this.jugadorId = jugadorId;
         this.equipId = equipId;
@@ -41,6 +41,7 @@ public class  Estadistiques_jugadors {
         this.bloqueigs = bloqueigs;
     }
 
+    // CONSTRUCTOR 2
     public Estadistiques_jugadors(float punts, float assistencies, float robades, float bloqueigs) {
         this.punts = punts;
         this.assistencies = assistencies;

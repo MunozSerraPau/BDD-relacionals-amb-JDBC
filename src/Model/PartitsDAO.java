@@ -41,9 +41,9 @@ public class PartitsDAO implements DAO<Partits> {
     }
 
     /**
-     *
-     * @return
-     * @throws SQLException
+     * Funció per obtenir una llista de partits d'un equip en concret.
+     * @return Una llista de tots els partits d'un equip.
+     * @throws SQLException Per si peta alguna part del SQL.
      */
     @Override
     public List<Partits> all() throws SQLException {
@@ -66,6 +66,7 @@ public class PartitsDAO implements DAO<Partits> {
         statement.setLong(1, idEquip);
         ResultSet resultSet = statement.executeQuery();
 
+        // Ho anem guardem en una llista de partits
         while (resultSet.next()) {
             Partits game = new Partits(0, "");
             game.setEquipId(resultSet.getInt("punts"));

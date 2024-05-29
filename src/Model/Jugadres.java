@@ -39,7 +39,7 @@ public class Jugadres {
         this.equipId = equipId;
     }
 
-    // CONSTRUCTOR 1
+    // CONSTRUCTOR 3
     public Jugadres(String nom, String cognom) {
         this.nom = nom;
         this.cognom = cognom;
